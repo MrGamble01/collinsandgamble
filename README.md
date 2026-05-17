@@ -1,15 +1,16 @@
-# Collins & Gamble — Company Site
+# Collins & Gamble — Agency Site
 
-Premium, SEO-optimized static site for Collins & Gamble (digital marketing & social
-media automation studio). No build step — open `index.html` or serve the folder
-with any static host (GitHub Pages, Netlify, Vercel, Cloudflare Pages, S3+CF, etc.).
+Static site for Collins & Gamble, a talent management agency representing a
+selective roster of creators. No build step — open `index.html` or serve the
+folder with any static host (GitHub Pages, Netlify, Vercel, Cloudflare Pages,
+S3+CF, etc.).
 
 ## Pages
 
 - `index.html` — Home
-- `services.html` — Services + FAQ
+- `services.html` — Practice (three disciplines + FAQ)
 - `about.html` — About & principles
-- `contact.html` — Contact form
+- `contact.html` — Introduction form
 - `404.html` — Not-found page
 
 ## SEO baked in
@@ -37,6 +38,7 @@ python3 -m http.server 8000
 - Confirm or update the LinkedIn URL (`/company/collinsandgamble`).
 - If the production domain isn't `www.collinsandgamble.com`, update canonical
   URLs, sitemap, robots, and JSON-LD URLs accordingly.
-- Wire the contact form to a real handler (Formspree, Resend, custom function,
-  etc.) — the current submit handler shows a confirmation but does not send.
-- Swap in any client logos / case studies as the studio collects them.
+- Wire the introduction form to a real handler (Formspree, Resend, custom
+  function, etc.) — the current submit handler shows a confirmation but does
+  not send.
+- Add roster bios, case work, or press once there's something worth showing.
