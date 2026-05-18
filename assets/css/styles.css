@@ -99,11 +99,19 @@ h3 { font-size: clamp(1.35rem, 2.2vw, 1.75rem); line-height: 1.2; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(246, 241, 231, 0.86);
-  backdrop-filter: saturate(140%) blur(10px);
-  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  background: var(--paper);
   border-bottom: 1px solid var(--rule);
 }
+
+/* Anchor targets land below the sticky header. */
+:target,
+section[id],
+[id^="creators"],
+[id^="brands"],
+[id^="capabilities"] {
+  scroll-margin-top: 5.5rem;
+}
+html { scroll-padding-top: 5.5rem; }
 
 .nav {
   display: flex;
