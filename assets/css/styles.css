@@ -307,6 +307,28 @@ html { scroll-padding-top: 5.5rem; }
   color: rgba(246, 241, 231, 0.7);
   margin-top: 0.5rem;
 }
+.hero-art .stat-steps {
+  list-style: none;
+  padding: 0;
+  margin: 1.75rem 0 0;
+  display: grid;
+  gap: 0.7rem;
+  color: rgba(246, 241, 231, 0.78);
+  font-size: 0.9rem;
+}
+.hero-art .stat-steps li {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.hero-art .stat-steps em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--bronze);
+  letter-spacing: 0;
+}
 
 @media (max-width: 880px) {
   .hero-grid { grid-template-columns: 1fr; }
