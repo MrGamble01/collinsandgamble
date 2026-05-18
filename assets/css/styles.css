@@ -629,13 +629,13 @@ h3 { font-size: clamp(1.35rem, 2.2vw, 1.75rem); line-height: 1.2; }
 .page-header h1 { max-width: 18ch; }
 .page-header .lead { margin-top: 1.25rem; }
 
-/* Reveal animation */
-.reveal {
+/* Reveal animation — opacity-hidden only when JS confirmed via html.js */
+.js .reveal {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 700ms ease, transform 700ms ease;
 }
-.reveal.in {
+.js .reveal.in {
   opacity: 1;
   transform: none;
 }
@@ -645,7 +645,7 @@ h3 { font-size: clamp(1.35rem, 2.2vw, 1.75rem); line-height: 1.2; }
     animation: none !important;
     transition: none !important;
   }
-  .reveal { opacity: 1; transform: none; }
+  .js .reveal { opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
 }
 
