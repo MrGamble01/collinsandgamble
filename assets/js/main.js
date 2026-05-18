@@ -45,6 +45,70 @@
   if (form) {
     const status = form.querySelector("[data-status]");
     const inbox = "hello@collinsandgamble.com";
+
+    // Couple "I'm a..." with the rest of the form so the path the user
+    // picked actually shapes the options and placeholders they see.
+    const sideSelect = form.querySelector("#side");
+    const lookingSelect = form.querySelector("#looking-for");
+    const linkInput = form.querySelector("#link");
+    const messageInput = form.querySelector("#message");
+
+    const optionSets = {
+      creator: [
+        "Join the roster",
+        "Already on the roster — need help",
+        "Just exploring",
+      ],
+      brand: [
+        "Single-product test campaign",
+        "Multi-product / ongoing program",
+        "Custom — let's talk",
+        "Just exploring",
+      ],
+      other: [
+        "General inquiry",
+        "Press / media",
+        "Partnership idea",
+      ],
+    };
+
+    const placeholders = {
+      creator: {
+        link: "Your Amazon storefront URL",
+        message:
+          "Tell us about your storefront, your audience, and the categories you cover. " +
+          "If there's a brand or product type you'd love to work with, mention it.",
+      },
+      brand: {
+        link: "Your Amazon listing, product page, or company site",
+        message:
+          "Tell us about the product — ASINs if you have them, the category, " +
+          "what conversion looks like today, and what you're hoping to move.",
+      },
+      other: {
+        link: "A relevant link, if there is one",
+        message: "What's on your mind?",
+      },
+    };
+
+    const applySide = (side) => {
+      const opts = optionSets[side] || optionSets.other;
+      if (lookingSelect) {
+        const previous = lookingSelect.value;
+        lookingSelect.innerHTML = opts
+          .map((o) => `<option>${o}</option>`)
+          .join("");
+        if (opts.includes(previous)) lookingSelect.value = previous;
+      }
+      const ph = placeholders[side] || placeholders.other;
+      if (linkInput) linkInput.placeholder = ph.link;
+      if (messageInput) messageInput.placeholder = ph.message;
+    };
+
+    if (sideSelect) {
+      applySide(sideSelect.value);
+      sideSelect.addEventListener("change", () => applySide(sideSelect.value));
+    }
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const data = new FormData(form);
