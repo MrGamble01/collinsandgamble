@@ -233,6 +233,24 @@ html { scroll-padding-top: 5.5rem; }
 }
 .btn:hover .arrow { transform: translateX(3px); }
 
+/* Visible focus for keyboard users on interactive elements. */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+.btn:focus-visible,
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--bronze-deep);
+  outline-offset: 3px;
+  border-radius: var(--radius);
+}
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: none;
+  border-bottom-color: var(--bronze-deep);
+  box-shadow: 0 1px 0 0 var(--bronze-deep);
+}
+
 /* Hero */
 .hero {
   padding: clamp(4rem, 9vw, 7.5rem) 0 clamp(3rem, 7vw, 5.5rem);
@@ -666,6 +684,16 @@ html { scroll-padding-top: 5.5rem; }
 .field textarea { min-height: 120px; resize: vertical; }
 .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
 @media (max-width: 600px) { .row-2 { grid-template-columns: 1fr; } }
+
+/* Honeypot: visually hidden from humans, still present for naive bots. */
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 
 .contact-grid {
   display: grid;

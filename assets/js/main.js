@@ -112,6 +112,17 @@
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const data = new FormData(form);
+
+      // Honeypot: real humans never see or touch this field.
+      if ((data.get("website") || "").toString().trim() !== "") {
+        if (status) {
+          status.textContent = "Thanks — we'll be in touch.";
+          status.hidden = false;
+        }
+        form.reset();
+        return;
+      }
+
       const side = (data.get("side") || "other").toString();
       const name = (data.get("name") || "").toString().trim();
       const email = (data.get("email") || "").toString().trim();
