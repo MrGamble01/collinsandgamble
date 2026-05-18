@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Collins and Gamble">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Collins and Gamble — Amazon Influencer management">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#1a1f27"/>
@@ -8,13 +8,39 @@
       <stop offset="0" stop-color="#b08a4f" stop-opacity="0.32"/>
       <stop offset="1" stop-color="#b08a4f" stop-opacity="0"/>
     </radialGradient>
+    <pattern id="dots" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="1" fill="#f6f1e7" fill-opacity="0.04"/>
+    </pattern>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
   <rect width="1200" height="630" fill="url(#glow)"/>
-  <g font-family="Georgia, 'Times New Roman', serif" fill="#f6f1e7">
-    <text x="80" y="160" font-size="28" letter-spacing="6" fill="#b08a4f" font-family="Inter, system-ui, sans-serif">DIGITAL MARKETING STUDIO</text>
-    <text x="80" y="340" font-size="120" font-style="italic">Collins<tspan fill="#b08a4f"> &amp; </tspan>Gamble</text>
-    <text x="80" y="430" font-size="40" fill="#f6f1e7" font-family="Georgia, serif">Brands that show up — and stay there.</text>
-    <text x="80" y="560" font-size="22" fill="#b08a4f" font-family="Inter, system-ui, sans-serif" letter-spacing="4">COLLINSANDGAMBLE.COM</text>
+
+  <g fill="#f6f1e7">
+    <!-- eyebrow -->
+    <g font-family="Inter, system-ui, sans-serif">
+      <rect x="80" y="148" width="48" height="1.6" fill="#b08a4f"/>
+      <text x="144" y="156" font-size="22" letter-spacing="6" fill="#b08a4f">AMAZON INFLUENCER MANAGEMENT</text>
+    </g>
+
+    <!-- brand wordmark -->
+    <text x="80" y="290" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-style="italic">Collins<tspan fill="#b08a4f"> &amp; </tspan>Gamble</text>
+
+    <!-- spine line -->
+    <g font-family="Georgia, 'Times New Roman', serif" fill="#f6f1e7">
+      <text x="80" y="392" font-size="44">Creators film. Creators get paid.</text>
+      <text x="80" y="448" font-size="44">We take care of <tspan font-style="italic" fill="#b08a4f">everything else</tspan>.</text>
+    </g>
+
+    <!-- footer URL + meta -->
+    <g font-family="Inter, system-ui, sans-serif" font-size="20" letter-spacing="4">
+      <text x="80" y="560" fill="#b08a4f">COLLINSANDGAMBLE.COM</text>
+      <text x="1120" y="560" fill="#f6f1e7" fill-opacity="0.55" text-anchor="end">END TO END · CREATORS &amp; BRANDS</text>
+    </g>
+
+    <!-- soft mark, right side -->
+    <g font-family="Georgia, serif" fill="#f6f1e7" fill-opacity="0.18" font-size="200">
+      <text x="1120" y="280" text-anchor="end">C<tspan fill="#b08a4f" fill-opacity="0.55" font-style="italic">&amp;</tspan>G</text>
+    </g>
   </g>
 </svg>
