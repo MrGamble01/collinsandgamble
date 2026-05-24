@@ -1,42 +1,42 @@
 /* Collins & Gamble — bold dark editorial UI */
 
 :root {
-  /* Surfaces */
-  --bg: #08080d;
-  --bg-elev: #0f1218;
-  --surface: #14181f;
-  --surface-2: #1a1f27;
-  --surface-3: #232932;
+  /* Surfaces — warmer charcoal, easier on the eye than near-black */
+  --bg: #14181f;
+  --bg-elev: #1a1f27;
+  --surface: #1f2530;
+  --surface-2: #262d39;
+  --surface-3: #2f3744;
 
-  /* Rules */
-  --rule: rgba(246, 241, 231, 0.09);
-  --rule-2: rgba(246, 241, 231, 0.18);
+  /* Rules — slightly brighter so dividers actually read */
+  --rule: rgba(246, 241, 231, 0.12);
+  --rule-2: rgba(246, 241, 231, 0.22);
 
-  /* Text on dark */
+  /* Text on dark — bumped contrast for readability */
   --text: #f6f1e7;
-  --text-mute: rgba(246, 241, 231, 0.62);
-  --text-dim: rgba(246, 241, 231, 0.42);
+  --text-mute: rgba(246, 241, 231, 0.80);
+  --text-dim: rgba(246, 241, 231, 0.58);
 
   /* Light alternative palette */
   --paper: #f6f1e7;
   --paper-2: #ece4d3;
   --ink: #0a0c10;
-  --ink-mute: rgba(10, 12, 16, 0.62);
+  --ink-mute: rgba(10, 12, 16, 0.68);
 
-  /* Accent — amber/copper, hotter than the previous muted bronze */
+  /* Accent — amber/copper */
   --accent: #e89e3c;
   --accent-hot: #f5b14a;
   --accent-deep: #b6781e;
   --accent-glow: rgba(232, 158, 60, 0.18);
   --accent-soft: rgba(232, 158, 60, 0.08);
 
-  /* Legacy aliases so existing inline styles don't break */
-  --ink-soft: #1a1f27;
+  /* Legacy aliases */
+  --ink-soft: var(--surface);
   --bronze: var(--accent);
   --bronze-deep: var(--accent-deep);
   --paper-soft: var(--paper-2);
   --mute: var(--text-mute);
-  --shadow-soft: 0 30px 80px -30px rgba(0, 0, 0, 0.8);
+  --shadow-soft: 0 30px 80px -30px rgba(0, 0, 0, 0.6);
 
   /* Type */
   --serif: "Fraunces", "Cormorant Garamond", Georgia, serif;
