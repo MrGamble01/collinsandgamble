@@ -367,22 +367,46 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   margin: 1.75rem 0 0;
   border-top: 1px solid var(--rule);
   display: grid;
-  gap: 1rem;
+  gap: 1.1rem;
   color: var(--text-mute);
-  font-size: 0.95rem;
+  font-size: 0.98rem;
+  position: relative;
+}
+.hero-art .stat-steps::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 2rem;
+  bottom: 0.5rem;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent) 0%, var(--rule-2) 60%, transparent 100%);
+  opacity: 0.55;
 }
 .hero-art .stat-steps li {
   display: grid;
-  grid-template-columns: 2.4rem 1fr;
-  gap: 0.65rem;
+  grid-template-columns: 2.75rem 1fr;
+  gap: 0.5rem;
   align-items: baseline;
+  position: relative;
+}
+.hero-art .stat-steps li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--surface-2);
 }
 .hero-art .stat-steps em {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   color: var(--accent);
   letter-spacing: -0.02em;
+  padding-left: 1.35rem;
 }
 
 @media (max-width: 880px) {
@@ -467,21 +491,68 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 
 .card {
   background: var(--surface);
-  padding: clamp(1.75rem, 3vw, 2.75rem);
+  padding: clamp(2rem, 3.4vw, 3rem);
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.1rem;
   min-height: 100%;
   transition: background 220ms ease, transform 220ms ease;
 }
+/* Default .num — small uppercase label (for cards with "For creators" / "For brands") */
 .card .num {
-  font-family: var(--serif);
-  font-size: 0.95rem;
-  letter-spacing: 0.16em;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
   color: var(--accent);
-  font-style: italic;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.4;
+  display: block;
 }
+/* Big serif numerals — opt in via .grid-numbered on the wrapping grid */
+.grid-numbered .card .num {
+  font-family: var(--serif);
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  letter-spacing: -0.04em;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: none;
+  margin-bottom: 0.25rem;
+}
+
+/* Feature card — used as a summary panel inside a capability grid */
+.card-feature {
+  background:
+    linear-gradient(160deg, rgba(232,158,60,0.12) 0%, transparent 65%),
+    var(--surface);
+  border-left: 1.5px solid var(--accent);
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.card-feature .eyebrow { color: var(--accent); }
+.card-feature-line {
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem) !important;
+  margin: 0 !important;
+  line-height: 1.15 !important;
+  color: var(--text);
+  letter-spacing: -0.025em;
+}
+.card-feature-line .accent { color: var(--accent); font-style: italic; }
+.card-feature-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-top: auto;
+  transition: gap 200ms ease;
+}
+.card-feature-link:hover { gap: 0.85rem; color: var(--accent-hot); }
+.card-feature:hover { background: linear-gradient(160deg, rgba(232,158,60,0.18) 0%, transparent 65%), var(--surface); transform: none; }
 .card h3 { margin: 0; color: var(--text); }
 .card p { color: var(--text-mute); margin: 0; }
 .card ul {
@@ -604,26 +675,53 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 /* Quote */
 .quote {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
+  grid-template-columns: 1fr 2fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+  position: relative;
+}
+.quote::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 56px;
+  height: 1.5px;
+  background: var(--accent);
+}
+.quote > div:first-child {
+  padding-top: 1.5rem;
 }
 .quote blockquote {
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(1.85rem, 3.8vw, 3rem);
-  line-height: 1.2;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.85rem, 4.2vw, 3.4rem);
+  line-height: 1.18;
+  letter-spacing: -0.035em;
   color: var(--text);
+  font-weight: 400;
 }
-.quote blockquote::before { content: "\201C"; color: var(--accent); margin-right: 0.1em; }
-.quote blockquote::after { content: "\201D"; color: var(--accent); }
+.quote blockquote::before {
+  content: "\201C";
+  color: var(--accent);
+  margin-right: 0.05em;
+  font-size: 1.2em;
+  line-height: 0;
+  vertical-align: -0.2em;
+  opacity: 0.6;
+}
+.quote blockquote::after {
+  content: "\201D";
+  color: var(--accent);
+  margin-left: 0.05em;
+  opacity: 0.6;
+}
 .quote cite {
   display: block;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   font-style: normal;
   font-size: 0.78rem;
-  color: var(--text-dim);
+  color: var(--accent);
   letter-spacing: 0.26em;
   text-transform: uppercase;
   font-weight: 600;
@@ -636,11 +734,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   border: 1px solid var(--rule-2);
   color: var(--text);
   border-radius: var(--radius-lg);
-  padding: clamp(2.5rem, 5vw, 4.25rem);
+  padding: clamp(3rem, 6.5vw, 5.5rem);
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 2rem;
-  align-items: center;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2.5rem;
+  align-items: end;
   position: relative;
   overflow: hidden;
 }
@@ -648,16 +746,37 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(60% 80% at 90% 100%, var(--accent-glow) 0%, transparent 60%);
+  background:
+    radial-gradient(80% 100% at 100% 100%, var(--accent-glow) 0%, transparent 55%),
+    radial-gradient(40% 60% at 0% 0%, rgba(232,158,60,0.06) 0%, transparent 60%);
   pointer-events: none;
 }
+.cta-banner::after {
+  content: "";
+  position: absolute;
+  inset: auto auto 0 0;
+  width: 56px;
+  height: 1.5px;
+  background: var(--accent);
+  margin: 0 0 clamp(3rem, 6.5vw, 5.5rem) clamp(3rem, 6.5vw, 5.5rem);
+}
 .cta-banner > * { position: relative; }
-.cta-banner h2 { color: var(--text); margin: 0; }
-.cta-banner .eyebrow { color: var(--accent) !important; }
-.cta-banner p { margin: 0.85rem 0 0; color: var(--text-mute); max-width: 50ch; }
-.cta-banner .btn-primary { background: var(--accent); color: var(--ink); }
+.cta-banner h2 {
+  color: var(--text);
+  margin: 0;
+  font-size: clamp(2.4rem, 4.8vw, 4rem);
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+.cta-banner .eyebrow { color: var(--accent) !important; margin-bottom: 1rem; }
+.cta-banner p { margin: 1.2rem 0 0; color: var(--text-mute); max-width: 50ch; font-size: 1.1rem; }
+.cta-banner .btn-primary { background: var(--accent); color: var(--ink); padding: 1.15rem 2.1rem; font-size: 1.05rem; }
 .cta-banner .btn-primary:hover { background: var(--accent-hot); }
-@media (max-width: 760px) { .cta-banner { grid-template-columns: 1fr; } }
+.cta-banner > div:last-child { display: flex; justify-content: flex-end; align-self: end; }
+@media (max-width: 760px) {
+  .cta-banner { grid-template-columns: 1fr; align-items: stretch; }
+  .cta-banner > div:last-child { justify-content: flex-start; }
+}
 
 /* Values (about) */
 .values {
