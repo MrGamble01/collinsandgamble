@@ -41,79 +41,98 @@
     revealAll();
   }
 
-  const form = document.querySelector("form[data-contact]");
+  // Generic mailto: form handler. Iterates over every field on submit and
+  // builds a plain-text email body. Works for both /contact and /apply.
+  // Honeypot field `website` is always treated as spam if filled.
+  const form = document.querySelector("form[data-mailto-form]")
+    || document.querySelector("form[data-contact]");
   if (form) {
     const status = form.querySelector("[data-status]");
-    const inbox = "hello@collinsandgamble.com";
+    const inbox = form.dataset.inbox || "hello@collinsandgamble.com";
+    const defaultSubject = form.dataset.subject || "Inquiry";
 
-    // Couple "I'm a..." with the rest of the form so the path the user
-    // picked actually shapes the options and placeholders they see.
+    // Optional path-coupling (only runs if both selects exist — i.e. the
+    // contact form). Reshapes the "looking-for" options + placeholder
+    // hints based on whether the user picked Creator / Brand / Other.
     const sideSelect = form.querySelector("#side");
     const lookingSelect = form.querySelector("#looking-for");
     const linkInput = form.querySelector("#link");
     const messageInput = form.querySelector("#message");
 
-    const optionSets = {
-      creator: [
-        "Join the roster",
-        "Already on the roster — need help",
-        "Just exploring",
-      ],
-      brand: [
-        "Single-product test campaign",
-        "Multi-product / ongoing program",
-        "Custom — let's talk",
-        "Just exploring",
-      ],
-      other: [
-        "General inquiry",
-        "Press / media",
-        "Partnership idea",
-      ],
-    };
-
-    const placeholders = {
-      creator: {
-        link: "Your Amazon storefront URL",
-        message:
-          "Tell us about your storefront, your audience, and the categories you cover. " +
-          "If there's a brand or product type you'd love to work with, mention it.",
-      },
-      brand: {
-        link: "Your Amazon listing, product page, or company site",
-        message:
-          "Tell us about the product — ASINs if you have them, the category, " +
-          "what conversion looks like today, and what you're hoping to move.",
-      },
-      other: {
-        link: "A relevant link, if there is one",
-        message: "What's on your mind?",
-      },
-    };
-
-    const applySide = (side) => {
-      const opts = optionSets[side] || optionSets.other;
-      if (lookingSelect) {
+    if (sideSelect && lookingSelect) {
+      const optionSets = {
+        creator: [
+          "Join the roster",
+          "Already on the roster — need help",
+          "Just exploring",
+        ],
+        brand: [
+          "Single-product test campaign",
+          "Multi-product / ongoing program",
+          "Custom — let's talk",
+          "Just exploring",
+        ],
+        other: [
+          "General inquiry",
+          "Press / media",
+          "Partnership idea",
+        ],
+      };
+      const placeholders = {
+        creator: {
+          link: "Your Amazon storefront URL",
+          message:
+            "Tell us about your storefront, your audience, and the categories you cover. " +
+            "If there's a brand or product type you'd love to work with, mention it.",
+        },
+        brand: {
+          link: "Your Amazon listing, product page, or company site",
+          message:
+            "Tell us about the product — ASINs if you have them, the category, " +
+            "what conversion looks like today, and what you're hoping to move.",
+        },
+        other: {
+          link: "A relevant link, if there is one",
+          message: "What's on your mind?",
+        },
+      };
+      const applySide = (side) => {
+        const opts = optionSets[side] || optionSets.other;
         const previous = lookingSelect.value;
-        lookingSelect.innerHTML = opts
-          .map((o) => `<option>${o}</option>`)
-          .join("");
+        lookingSelect.innerHTML = opts.map((o) => `<option>${o}</option>`).join("");
         if (opts.includes(previous)) lookingSelect.value = previous;
-      }
-      const ph = placeholders[side] || placeholders.other;
-      if (linkInput) linkInput.placeholder = ph.link;
-      if (messageInput) messageInput.placeholder = ph.message;
-    };
-
-    if (sideSelect) {
+        const ph = placeholders[side] || placeholders.other;
+        if (linkInput) linkInput.placeholder = ph.link;
+        if (messageInput) messageInput.placeholder = ph.message;
+      };
       applySide(sideSelect.value);
       sideSelect.addEventListener("change", () => applySide(sideSelect.value));
     }
+
+    const prettify = (key) =>
+      key
+        .replace(/[-_]/g, " ")
+        .replace(/\b\w/g, (c) => c.toUpperCase());
+
+    // Multi-value fields (multi-select / checkbox groups) come back as
+    // multiple entries from FormData — merge them into one comma-separated
+    // string per field name.
+    const collect = (data) => {
+      const acc = new Map();
+      for (const [k, v] of data.entries()) {
+        const val = v.toString().trim();
+        if (!val || k === "website") continue;
+        if (acc.has(k)) acc.set(k, acc.get(k) + ", " + val);
+        else acc.set(k, val);
+      }
+      return acc;
+    };
+
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const data = new FormData(form);
 
-      // Honeypot: real humans never see or touch this field.
+      // Honeypot — real humans never see or touch this field.
       if ((data.get("website") || "").toString().trim() !== "") {
         if (status) {
           status.textContent = "Thanks — we'll be in touch.";
@@ -123,28 +142,23 @@
         return;
       }
 
-      const side = (data.get("side") || "other").toString();
-      const name = (data.get("name") || "").toString().trim();
-      const email = (data.get("email") || "").toString().trim();
-      const link = (data.get("link") || "").toString().trim();
-      const looking = (data.get("looking-for") || "").toString().trim();
-      const message = (data.get("message") || "").toString().trim();
+      const fields = collect(data);
 
+      // Build a readable plain-text body.
+      const lines = [];
+      for (const [k, v] of fields) {
+        lines.push(`${prettify(k)}: ${v}`);
+      }
+      const body = lines.join("\n\n") + "\n";
+
+      // Subject: data-subject prefix + name if we have one.
+      const name = (fields.get("name") || "").trim();
+      const side = (fields.get("side") || "").toLowerCase();
       const subjectPrefix =
         side === "creator" ? "Creator inquiry" :
         side === "brand"   ? "Brand inquiry"   :
-                             "Inquiry";
+        defaultSubject;
       const subject = `${subjectPrefix}${name ? ` — ${name}` : ""}`;
-
-      const body =
-`I'm a: ${side}
-Name: ${name}
-Email: ${email}
-Link: ${link}
-Looking for: ${looking}
-
-${message}
-`;
 
       const href =
         `mailto:${inbox}` +
