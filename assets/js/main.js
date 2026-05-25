@@ -167,13 +167,26 @@
 
       if (status) {
         status.innerHTML =
-          `Opening your email client with this message pre-filled — just hit send. ` +
-          `If nothing opens, write us directly at ` +
-          `<a href="mailto:${inbox}" style="text-decoration: underline;">${inbox}</a>.`;
+          `Opening your email client — hit send to deliver the note. ` +
+          `Redirecting in a moment…`;
         status.hidden = false;
       }
 
-      window.location.href = href;
+      // Fire the mailto: via a transient anchor so the browser hands it
+      // off to the OS email client without navigating the current page —
+      // then we redirect to /thanks ourselves.
+      const a = document.createElement("a");
+      a.href = href;
+      a.style.display = "none";
+      a.rel = "noopener";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      const thanksUrl = form.dataset.thanks || "/thanks";
+      window.setTimeout(() => {
+        window.location.assign(thanksUrl);
+      }, 400);
     });
   }
 })();
