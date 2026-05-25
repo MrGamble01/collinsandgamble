@@ -1566,6 +1566,85 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .apply-timeline li { grid-template-columns: 1fr; gap: 0.5rem; }
 }
 
+/* Book-a-call card (Calendly CTA) */
+.book-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  margin: 0 0 2rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgba(232, 168, 56, 0.06), rgba(232, 168, 56, 0));
+  text-decoration: none;
+  color: var(--text);
+  transition: background 220ms ease, transform 220ms ease, border-color 220ms ease;
+}
+.book-card:hover {
+  background: linear-gradient(180deg, rgba(232, 168, 56, 0.14), rgba(232, 168, 56, 0.02));
+  transform: translateY(-2px);
+  border-color: var(--accent-hot);
+}
+.book-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: rgba(232, 168, 56, 0.12);
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.book-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  line-height: 1.3;
+}
+.book-card-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+.book-card strong {
+  font-size: 1.05rem;
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.book-card-note {
+  font-size: 0.82rem;
+  color: var(--text-mute);
+  margin-top: 0.15rem;
+}
+.book-card-arrow {
+  color: var(--accent);
+  width: 18px;
+  height: 18px;
+  transition: transform 220ms ease;
+  flex-shrink: 0;
+}
+.book-card:hover .book-card-arrow { transform: translateX(4px); }
+
+/* Thanks page */
+.thanks-header { padding-top: clamp(4.5rem, 9vw, 7rem); }
+.thanks-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  background: rgba(232, 168, 56, 0.08);
+  margin-bottom: 1.75rem;
+}
+
 /* Reveal — opacity-hidden only when JS confirmed */
 .js .reveal {
   opacity: 0;
