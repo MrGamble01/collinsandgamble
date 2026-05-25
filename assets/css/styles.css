@@ -1645,6 +1645,38 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   margin-bottom: 1.75rem;
 }
 
+/* Prose (used by /privacy and similar single-column legal/info pages) */
+.prose { max-width: 760px; margin: 0 auto; }
+.prose-body h2 {
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  margin: 2.75rem 0 1rem;
+  letter-spacing: -0.025em;
+}
+.prose-body h2:first-of-type { margin-top: 0; }
+.prose-body p {
+  color: var(--text-mute);
+  line-height: 1.65;
+  margin: 0 0 1.1rem;
+  font-size: 1.02rem;
+}
+.prose-body p strong { color: var(--text); font-weight: 600; }
+.prose-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.prose-body a:hover { color: var(--accent-hot); }
+.prose-body ul.check li { margin-bottom: 0.65rem; }
+.prose-meta {
+  margin-top: 2.5rem !important;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.85rem !important;
+  color: var(--text-dim) !important;
+  font-family: var(--serif);
+  font-style: italic;
+}
+
+/* Footer legal: link styling for /privacy */
+.legal a { color: var(--text-mute); text-decoration: underline; text-underline-offset: 3px; }
+.legal a:hover { color: var(--accent); }
+
 /* Reveal — opacity-hidden only when JS confirmed */
 .js .reveal {
   opacity: 0;
