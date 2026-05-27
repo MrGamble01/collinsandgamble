@@ -1272,6 +1272,32 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   letter-spacing: -0.015em;
 }
 
+.playbook-figure {
+  margin: 2.5rem 0 2.75rem;
+  padding: 1.75rem 0 1.5rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.playbook-figure svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.playbook-figure figcaption {
+  margin-top: 1rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+  text-align: center;
+  max-width: 56ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .pull-quote {
   margin: 2.5rem 0 2.5rem;
   padding: 1.5rem 0 1.5rem 2rem;
