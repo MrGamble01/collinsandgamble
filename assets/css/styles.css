@@ -313,18 +313,26 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   background: linear-gradient(165deg, var(--surface-2) 0%, var(--surface) 100%);
   border: 1px solid var(--rule-2);
   border-radius: var(--radius-lg);
-  padding: 2.5rem;
+  padding: 1.5rem clamp(1.25rem, 2vw, 1.75rem);
   overflow: hidden;
   box-shadow: var(--shadow-soft);
-  aspect-ratio: auto;
 }
 .hero-art::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(246, 241, 231, 0.05) 1px, transparent 1px);
-  background-size: 22px 22px;
+  background-image: radial-gradient(rgba(246, 241, 231, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
   pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+.hero-art-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  z-index: 1;
 }
 .hero-art .mark {
   position: absolute;
