@@ -1,0 +1,648 @@
+{
+  "version": 1,
+  "generated": "2026-06-01",
+  "items": [
+    {
+      "id": "home",
+      "title": "Home",
+      "url": "/",
+      "kind": "page",
+      "lead": "You film. You get paid. We take care of everything else.",
+      "description": "Collins & Gamble runs the Amazon Influencer Program end-to-end — brand sourcing, deals, storefront, content, and analytics. The agency overview.",
+      "tags": ["home", "agency", "overview", "amazon", "influencer", "creators", "brands"]
+    },
+    {
+      "id": "services",
+      "title": "How it works",
+      "url": "/services",
+      "kind": "page",
+      "lead": "One engine, two sides. Creators on one side, brands on the other.",
+      "description": "How the agency runs the Amazon Influencer workflow end-to-end for both creators and brands.",
+      "tags": ["services", "how", "workflow", "operations", "engine"]
+    },
+    {
+      "id": "services-creators",
+      "title": "For creators",
+      "url": "/services#creators",
+      "kind": "section",
+      "parent": "How it works",
+      "lead": "You came for the Amazon Influencer Program. You stayed because filming reviews is the only part you actually like.",
+      "description": "What the agency runs for the creator side — sourcing, contracts, storefront, coaching, analytics, brand relationships.",
+      "tags": ["creators", "side", "filming", "review", "back office"]
+    },
+    {
+      "id": "services-brands",
+      "title": "For brands",
+      "url": "/services#brands",
+      "kind": "section",
+      "parent": "How it works",
+      "lead": "Amazon shoppers don't trust your hero image. They trust a 30-second on-site review from a creator who's actually opened the box.",
+      "description": "How the agency runs the brand side — matched creators, briefs, contracts, on-site videos, ASIN-level reporting.",
+      "tags": ["brands", "asin", "conversion", "campaigns", "side"]
+    },
+    {
+      "id": "services-capabilities",
+      "title": "Five capabilities",
+      "url": "/services#capabilities",
+      "kind": "section",
+      "parent": "How it works",
+      "lead": "Same machinery powers the creator side and the brand side.",
+      "description": "The five core capabilities both sides plug into: sourcing, deals, storefront, content coaching, analytics — plus matching and briefing as connective tissue.",
+      "tags": ["capabilities", "sourcing", "deals", "storefront", "coaching", "analytics"]
+    },
+    {
+      "id": "playbook",
+      "title": "The Playbook",
+      "url": "/playbook",
+      "kind": "page",
+      "lead": "How the Amazon Influencer Program actually works.",
+      "description": "The honest 12-minute field guide to the Amazon Influencer Program — written for both creators and brands, with diagrams.",
+      "tags": ["playbook", "guide", "amazon", "influencer", "program", "long-form"]
+    },
+    {
+      "id": "playbook-start",
+      "title": "Start here: what the program actually is",
+      "url": "/playbook#start",
+      "kind": "section",
+      "parent": "The Playbook",
+      "lead": "Amazon's affiliate-and-content channel built around its on-site review video format.",
+      "description": "Chapter 01: storefront, on-site review, commission, brand deals — the four things approved creators get at once.",
+      "tags": ["program", "storefront", "commission", "brand deals", "basics"]
+    },
+    {
+      "id": "playbook-why",
+      "title": "Why on-site reviews convert",
+      "url": "/playbook#why",
+      "kind": "section",
+      "parent": "The Playbook",
+      "lead": "An on-site Amazon review video plays where the decision happens — on the product page itself.",
+      "description": "Chapter 02: why a video next to the buy button is a different content problem than a video in a social feed.",
+      "tags": ["conversion", "on-site", "decision", "buy box", "pdp", "format"]
+    },
+    {
+      "id": "playbook-earn",
+      "title": "How creators actually earn",
+      "url": "/playbook#earn",
+      "kind": "section",
+      "parent": "The Playbook",
+      "lead": "Three revenue streams. Most creators see one.",
+      "description": "Chapter 03: storefront commission, on-site video bounty, and direct brand deals — the income mechanics of the program.",
+      "tags": ["earnings", "commission", "bounty", "brand deals", "revenue"]
+    },
+    {
+      "id": "playbook-diy",
+      "title": "What brands miss when they DIY",
+      "url": "/playbook#diy",
+      "kind": "section",
+      "parent": "The Playbook",
+      "lead": "Brands scrape lists of influencers, ship dozens of products, and hope.",
+      "description": "Chapter 04: scattershot reach, no quality control, no ASIN-level reporting, and the operational cost of doing it yourself.",
+      "tags": ["diy", "brands", "scattershot", "operations", "cost"]
+    },
+    {
+      "id": "playbook-gap",
+      "title": "The back office gap",
+      "url": "/playbook#gap",
+      "kind": "section",
+      "parent": "The Playbook",
+      "lead": "The program rewards the creator who treats it like a business.",
+      "description": "Chapter 05: sourcing, negotiating, storefront, content coaching, analytics — the work that doesn't show up on camera.",
+      "tags": ["back office", "gap", "operations", "business"]
+    },
+    {
+      "id": "playbook-run",
+      "title": "What changes when it's run for you",
+      "url": "/playbook#run",
+      "kind": "section",
+      "parent": "The Playbook",
+      "lead": "The day shrinks to three motions. Open the box. Press record. Upload.",
+      "description": "Chapter 06: what the agency engagement actually feels like, on each side of the table.",
+      "tags": ["agency", "engagement", "filming", "operations"]
+    },
+    {
+      "id": "playbook-look",
+      "title": "What we look for",
+      "url": "/playbook#look",
+      "kind": "section",
+      "parent": "The Playbook",
+      "lead": "Real audience, real storefront, honest on camera. Listings worth the lift.",
+      "description": "Chapter 07: what makes a fit on the creator side and the brand side — with a link to the fit check.",
+      "tags": ["fit", "look", "criteria", "selectivity"]
+    },
+    {
+      "id": "playbook-read",
+      "title": "Reading the analytics",
+      "url": "/playbook#read",
+      "kind": "section",
+      "parent": "The Playbook",
+      "lead": "A quick guide to what actually counts on the program.",
+      "description": "Chapter 08: storefront earnings, on-site review performance, brand deal economics — what to actually look at in the dashboards.",
+      "tags": ["analytics", "metrics", "dashboard", "reporting"]
+    },
+    {
+      "id": "journal",
+      "title": "The Journal",
+      "url": "/journal",
+      "kind": "page",
+      "lead": "The long version, by the agency.",
+      "description": "Long-form essays on the practice of the Amazon Influencer Program — specific moments where we've earned a strong opinion.",
+      "tags": ["journal", "writing", "essays", "long-form", "agency"]
+    },
+    {
+      "id": "journal-format",
+      "title": "The on-site review video, explained",
+      "url": "/journal/on-site-review-explained",
+      "kind": "article",
+      "parent": "The Journal",
+      "lead": "What the format actually is, where Amazon shows it, what creators control, and why a video next to the buy button is a different problem than a feed video.",
+      "description": "9-minute deep dive on the format itself — placement, ranking signals, creator-controlled variables, cadence discipline.",
+      "tags": ["format", "video", "carousel", "cadence", "thumbnail", "format"]
+    },
+    {
+      "id": "journal-storefront",
+      "title": "Treat the storefront like the store",
+      "url": "/journal/storefront-is-the-store",
+      "kind": "article",
+      "parent": "The Journal",
+      "lead": "The Amazon storefront is the most valuable real estate a creator owns, and the one most quietly underused.",
+      "description": "11-minute long argument for treating the storefront like inventory: categories vs idea lists, deep linking, custom photos, the maintenance rhythm.",
+      "tags": ["storefront", "store", "categories", "idea lists", "compounding"]
+    },
+    {
+      "id": "journal-no-script",
+      "title": "Why we won't approve a script",
+      "url": "/journal/no-script-approval",
+      "kind": "article",
+      "parent": "The Journal",
+      "lead": "Every brand asks. The answer is no, and the reasoning is mechanical, not philosophical.",
+      "description": "7-minute stance piece on why pre-approved scripts perform worse on Amazon and how the agency briefs instead.",
+      "tags": ["scripts", "honesty", "brief", "brand safety", "stance"]
+    },
+    {
+      "id": "journal-approval",
+      "title": "How to get approved by the Influencer Program",
+      "url": "/journal/how-to-get-approved",
+      "kind": "article",
+      "parent": "The Journal",
+      "lead": "What Amazon's bar appears to be, what to put on the channels you submit, and the patterns we see in declined applications.",
+      "description": "8-minute practical guide to getting approved by Amazon — for creators who aren't yet in the program.",
+      "tags": ["approval", "amazon", "application", "aip", "submit"]
+    },
+    {
+      "id": "about",
+      "title": "About",
+      "url": "/about",
+      "kind": "page",
+      "lead": "Creators film. Creators get paid. We take care of everything else.",
+      "description": "The agency's principles, philosophy, and the operating habits we apply to every engagement.",
+      "tags": ["about", "principles", "agency", "philosophy", "team"]
+    },
+    {
+      "id": "about-principles",
+      "title": "Six principles",
+      "url": "/about#principles",
+      "kind": "section",
+      "parent": "About",
+      "lead": "Six working habits that decide how we run.",
+      "description": "The creator's time belongs on camera. Honest reviews convert. The storefront is the store. Two sides, one standard. Numbers not vibes. No surprises.",
+      "tags": ["principles", "values", "habits", "operating"]
+    },
+    {
+      "id": "contact",
+      "title": "Contact",
+      "url": "/contact",
+      "kind": "page",
+      "lead": "One form. Two paths.",
+      "description": "Get in touch — creators and brands both come through the same door. Every note is read by a person.",
+      "tags": ["contact", "form", "get in touch", "email"]
+    },
+    {
+      "id": "apply",
+      "title": "Apply to the roster",
+      "url": "/apply",
+      "kind": "page",
+      "lead": "Approved Amazon Influencers, real audiences, working storefronts.",
+      "description": "The dedicated creator application — what we look for, the intake form, what happens after you send it.",
+      "tags": ["apply", "creators", "roster", "application", "join"]
+    },
+    {
+      "id": "apply-criteria",
+      "title": "What we look for in creators",
+      "url": "/apply",
+      "kind": "section",
+      "parent": "Apply to the roster",
+      "lead": "AIP-approved. Real audience. Honest on camera. Ready to be managed.",
+      "description": "The four criteria we evaluate when reading an application — and the one hard gate.",
+      "tags": ["criteria", "fit", "approved", "audience", "honest"]
+    },
+    {
+      "id": "brands",
+      "title": "For brands — intake",
+      "url": "/brands",
+      "kind": "page",
+      "lead": "Get on storefronts that convert.",
+      "description": "The dedicated brand intake — fit criteria, the inquiry form, and the brief-to-lift timeline.",
+      "tags": ["brands", "intake", "campaign", "asin", "convert"]
+    },
+    {
+      "id": "brands-fit",
+      "title": "What makes a brand fit",
+      "url": "/brands",
+      "kind": "section",
+      "parent": "For brands",
+      "lead": "A product that demos well. A listing worth the lift. Open to the honest take. Reading conversion, not reach.",
+      "description": "The four criteria we evaluate when scoping a brand engagement.",
+      "tags": ["fit", "brand", "criteria", "campaign"]
+    },
+    {
+      "id": "check",
+      "title": "Should you apply? Fit check",
+      "url": "/check",
+      "kind": "page",
+      "lead": "A 60-second, honest self-check for Amazon Influencers wondering whether to apply to the roster.",
+      "description": "Five questions, an honest answer — including the 'not yet' and 'not your fit' verdicts.",
+      "tags": ["check", "fit", "quiz", "apply", "self-check", "60 seconds"]
+    },
+    {
+      "id": "privacy",
+      "title": "Privacy",
+      "url": "/privacy",
+      "kind": "page",
+      "lead": "The short, honest version.",
+      "description": "What we collect, what we do with it, what we don't do, and how to reach us for deletion or GDPR rights.",
+      "tags": ["privacy", "data", "gdpr", "policy"]
+    },
+    {
+      "id": "action-apply",
+      "title": "Apply to the roster",
+      "url": "/apply",
+      "kind": "action",
+      "lead": "Quick action — go to the creator application.",
+      "description": "Open the creator application form.",
+      "tags": ["action", "apply", "creators", "join"]
+    },
+    {
+      "id": "action-brands",
+      "title": "Brief us on your product",
+      "url": "/brands",
+      "kind": "action",
+      "lead": "Quick action — go to the brand intake.",
+      "description": "Open the brand inquiry form.",
+      "tags": ["action", "brands", "brief", "intake"]
+    },
+    {
+      "id": "action-book",
+      "title": "Book a 30-minute intro call",
+      "url": "https://calendly.com/matthew-beagleforpm/30min",
+      "kind": "action",
+      "lead": "Quick action — open the Calendly to grab a slot.",
+      "description": "Schedule the intro call directly on the calendar. Creators and brands welcome.",
+      "tags": ["action", "book", "calendly", "call", "intro"]
+    },
+    {
+      "id": "action-email",
+      "title": "Email hello@collinsandgamble.com",
+      "url": "mailto:hello@collinsandgamble.com",
+      "kind": "action",
+      "lead": "Quick action — open your email client to the general inbox.",
+      "description": "Write to the general inbox. Read by a person.",
+      "tags": ["action", "email", "hello", "write"]
+    },
+    {
+      "id": "action-playbook",
+      "title": "Open the Playbook",
+      "url": "/playbook",
+      "kind": "action",
+      "lead": "Quick action — read the 12-minute field guide.",
+      "description": "The honest field guide to the program.",
+      "tags": ["action", "playbook", "guide", "read"]
+    },
+    {
+      "id": "action-check",
+      "title": "Take the fit check",
+      "url": "/check",
+      "kind": "action",
+      "lead": "Quick action — open the 60-second self-check.",
+      "description": "Five questions, an honest answer.",
+      "tags": ["action", "check", "fit", "quiz"]
+    },
+    {
+      "id": "topic-aip",
+      "title": "Amazon Influencer Program",
+      "url": "/playbook#start",
+      "kind": "topic",
+      "lead": "What AIP is, how to apply, and what changes when you're in.",
+      "description": "Topic page collecting the major writing on the Amazon Influencer Program — Playbook chapter 01 and the approval guide.",
+      "tags": ["aip", "amazon", "program", "influencer", "topic"]
+    },
+    {
+      "id": "topic-storefront",
+      "title": "Storefront",
+      "url": "/journal/storefront-is-the-store",
+      "kind": "topic",
+      "lead": "The store-not-profile mindset, and how we run storefronts for the roster.",
+      "description": "Topic page on Amazon storefronts — the storefront journal piece and Playbook chapter 05.",
+      "tags": ["storefront", "store", "topic", "curation"]
+    },
+    {
+      "id": "topic-format",
+      "title": "On-site review format",
+      "url": "/journal/on-site-review-explained",
+      "kind": "topic",
+      "lead": "Where the video lives, what creators control, and what the carousel rewards.",
+      "description": "Topic page on the on-site review video format — journal deep dive and Playbook chapter 02.",
+      "tags": ["format", "on-site", "video", "review", "topic"]
+    },
+    {
+      "id": "topic-brief",
+      "title": "Briefing without scripting",
+      "url": "/journal/no-script-approval",
+      "kind": "topic",
+      "lead": "The brief structure we use instead of scripts, and why.",
+      "description": "Topic page on the brief-not-script model — the stance piece and the principles behind it.",
+      "tags": ["brief", "scripts", "stance", "topic"]
+    },
+    {
+      "id": "journal-format-mechanics",
+      "title": "What the format actually is",
+      "url": "/journal/on-site-review-explained#what-the-format-actually-is",
+      "kind": "section",
+      "parent": "On-site review explained",
+      "lead": "An MP4 between ten and sixty seconds, recorded by an approved creator and uploaded directly to a specific product listing.",
+      "description": "Technical specification of the on-site review video format.",
+      "tags": ["format", "spec", "mp4", "carousel", "asin"]
+    },
+    {
+      "id": "journal-format-where",
+      "title": "Where the on-site review lives",
+      "url": "/journal/on-site-review-explained#where-it-lives",
+      "kind": "section",
+      "parent": "On-site review explained",
+      "lead": "On desktop, a Videos carousel below the description; on mobile, larger thumbnails closer to the buy box.",
+      "description": "Placement of the video on Amazon product detail pages, across desktop and mobile.",
+      "tags": ["placement", "carousel", "pdp", "mobile", "desktop"]
+    },
+    {
+      "id": "journal-format-amazon",
+      "title": "What Amazon ranks (and what we infer)",
+      "url": "/journal/on-site-review-explained#what-amazon-ranks",
+      "kind": "section",
+      "parent": "On-site review explained",
+      "lead": "Completion rate, engagement after play, recency, and quality heuristics that penalize low-effort uploads.",
+      "description": "Signals that appear to drive the video carousel ranking on Amazon.",
+      "tags": ["amazon", "ranking", "completion", "recency", "algorithm"]
+    },
+    {
+      "id": "journal-format-creator",
+      "title": "What creators control",
+      "url": "/journal/on-site-review-explained#what-creators-control",
+      "kind": "section",
+      "parent": "On-site review explained",
+      "lead": "Length, thumbnail, aspect ratio, audio, the first three seconds, content honesty.",
+      "description": "The variables in a creator's direct control when shooting an on-site review.",
+      "tags": ["control", "length", "thumbnail", "audio", "creators"]
+    },
+    {
+      "id": "journal-format-cadence",
+      "title": "Cadence over polish",
+      "url": "/journal/on-site-review-explained#what-this-means-for-creators",
+      "kind": "section",
+      "parent": "On-site review explained",
+      "lead": "Two uploads a week will outperform one perfect-looking video a month.",
+      "description": "The cadence-over-polish discipline that the on-site format rewards over time.",
+      "tags": ["cadence", "rhythm", "discipline", "creators"]
+    },
+    {
+      "id": "journal-storefront-compound",
+      "title": "The compounding case",
+      "url": "/journal/storefront-is-the-store#compounding-case",
+      "kind": "section",
+      "parent": "Storefront is the store",
+      "lead": "Storefront commission is paid on everything the shopper buys in the same session, not just the product they clicked.",
+      "description": "Why storefront depth multiplies commission — the compounding mechanic that most creators miss.",
+      "tags": ["compounding", "commission", "depth", "storefront"]
+    },
+    {
+      "id": "journal-storefront-categories",
+      "title": "Categories versus idea lists",
+      "url": "/journal/storefront-is-the-store#categories-vs-idea-lists",
+      "kind": "section",
+      "parent": "Storefront is the store",
+      "lead": "Categories are the structural skeleton; idea lists are narrative. They are not interchangeable.",
+      "description": "When to use categories versus idea lists on an Amazon storefront, and the mistakes we see most often.",
+      "tags": ["categories", "idea lists", "structure", "curation"]
+    },
+    {
+      "id": "journal-storefront-photos",
+      "title": "Photos and copy: the trap of generic Amazon images",
+      "url": "/journal/storefront-is-the-store#photos-and-copy",
+      "kind": "section",
+      "parent": "Storefront is the store",
+      "lead": "The stock-image storefront looks like Amazon. The custom-photographed storefront looks like a small magazine.",
+      "description": "Why custom thumbnails and short opinionated captions outperform Amazon's default product images.",
+      "tags": ["photos", "copy", "thumbnails", "presentation"]
+    },
+    {
+      "id": "journal-storefront-maintenance",
+      "title": "The storefront maintenance discipline",
+      "url": "/journal/storefront-is-the-store#maintenance-discipline",
+      "kind": "section",
+      "parent": "Storefront is the store",
+      "lead": "Weekly placements, monthly idea lists, quarterly category audits, annual structural reset.",
+      "description": "The maintenance rhythm we run for the roster's storefronts.",
+      "tags": ["maintenance", "rhythm", "discipline", "operations"]
+    },
+    {
+      "id": "journal-script-format",
+      "title": "Why the format makes scripts fail",
+      "url": "/journal/no-script-approval#the-format-is-the-reason",
+      "kind": "section",
+      "parent": "Why we won't approve a script",
+      "lead": "Decision-stage content rewards what awareness advertising punishes: pauses, false starts, the feel of a real call.",
+      "description": "Why pre-approved scripts underperform specifically on the on-site review format.",
+      "tags": ["scripts", "format", "decision", "shopper"]
+    },
+    {
+      "id": "journal-script-brief",
+      "title": "How we brief without scripting",
+      "url": "/journal/no-script-approval#how-we-brief",
+      "kind": "section",
+      "parent": "Why we won't approve a script",
+      "lead": "A one-page brief with five sections — what the product is, who it's for, three features, what's true, what not to claim.",
+      "description": "The five-section brief template the agency uses instead of approved scripts.",
+      "tags": ["brief", "template", "operations", "instead"]
+    },
+    {
+      "id": "journal-script-safety",
+      "title": "Brand safety, answered",
+      "url": "/journal/no-script-approval#brand-safety",
+      "kind": "section",
+      "parent": "Why we won't approve a script",
+      "lead": "Three ways the agency handles the legitimate risk concern behind script-approval requests.",
+      "description": "How the brief covers brand-safety risks that scripts are usually trying to handle.",
+      "tags": ["brand safety", "risk", "compliance", "legal"]
+    },
+    {
+      "id": "journal-approval-bar",
+      "title": "What the program is actually looking for",
+      "url": "/journal/how-to-get-approved#what-the-program-is-looking-for",
+      "kind": "section",
+      "parent": "How to get approved",
+      "lead": "Will this person create content that helps Amazon shoppers decide to buy?",
+      "description": "The single question Amazon's review process appears to ask, in many phrasings.",
+      "tags": ["amazon", "approval", "bar", "criteria"]
+    },
+    {
+      "id": "journal-approval-channels",
+      "title": "What submitted channels should look like",
+      "url": "/journal/how-to-get-approved#channels",
+      "kind": "section",
+      "parent": "How to get approved",
+      "lead": "Pick the channel where you talk about products. Have recent activity. Show engagement. Make product content findable.",
+      "description": "How to prepare submitted social channels for the Amazon Influencer Program application.",
+      "tags": ["channels", "instagram", "tiktok", "youtube", "submit"]
+    },
+    {
+      "id": "journal-approval-declines",
+      "title": "What gets people declined",
+      "url": "/journal/how-to-get-approved#declines",
+      "kind": "section",
+      "parent": "How to get approved",
+      "lead": "Three patterns: content that doesn't look like commerce, engagement that doesn't match reach, no Amazon connection.",
+      "description": "The patterns we see most often in declined Amazon Influencer Program applications.",
+      "tags": ["decline", "rejection", "patterns", "fix"]
+    },
+    {
+      "id": "journal-approval-first-month",
+      "title": "What to do after you're approved",
+      "url": "/journal/how-to-get-approved#if-you-get-approved",
+      "kind": "section",
+      "parent": "How to get approved",
+      "lead": "The first thirty days are the highest-leverage month of your time on the program.",
+      "description": "How to use the first month after Amazon approval to set up the storefront and start a cadence.",
+      "tags": ["approved", "first month", "onboard", "setup"]
+    },
+    {
+      "id": "capability-sourcing",
+      "title": "Brand & Product Sourcing",
+      "url": "/services#capabilities",
+      "kind": "section",
+      "parent": "Five capabilities",
+      "lead": "Outbound to brands. Vetting. Alignment. Products at the creator's door, already briefed.",
+      "description": "Capability 01 — how we source brands and products for the roster.",
+      "tags": ["sourcing", "brands", "products", "outbound"]
+    },
+    {
+      "id": "capability-deals",
+      "title": "Deals & Contracts",
+      "url": "/services#capabilities",
+      "kind": "section",
+      "parent": "Five capabilities",
+      "lead": "Rates, exclusivity, deliverables, kill fees. The paperwork that protects both sides.",
+      "description": "Capability 02 — deal negotiation and contracting for creator-brand engagements.",
+      "tags": ["deals", "contracts", "negotiation", "paperwork"]
+    },
+    {
+      "id": "capability-storefront",
+      "title": "Storefront Optimization",
+      "url": "/services#capabilities",
+      "kind": "section",
+      "parent": "Five capabilities",
+      "lead": "Categories, idea lists, photos, copy, listing placements. The storefront is the store.",
+      "description": "Capability 03 — how we run the storefront for the roster's creators.",
+      "tags": ["storefront", "optimization", "categories", "curation"]
+    },
+    {
+      "id": "capability-coaching",
+      "title": "Content Coaching",
+      "url": "/services#capabilities",
+      "kind": "section",
+      "parent": "Five capabilities",
+      "lead": "Hook structure, length, B-roll, format. Tuned to what converts on Amazon specifically.",
+      "description": "Capability 04 — how we coach creators on the on-site review video craft.",
+      "tags": ["coaching", "content", "format", "hooks"]
+    },
+    {
+      "id": "capability-analytics",
+      "title": "Analytics & Reporting",
+      "url": "/services#capabilities",
+      "kind": "section",
+      "parent": "Five capabilities",
+      "lead": "Plain reports tied to clicks, conversions, and commissions — and PDP performance on the brand side.",
+      "description": "Capability 05 — how we report on what's actually working.",
+      "tags": ["analytics", "reporting", "metrics", "conversion"]
+    },
+    {
+      "id": "playbook-figures",
+      "title": "Playbook diagrams",
+      "url": "/playbook#why",
+      "kind": "topic",
+      "lead": "Three inline SVG diagrams — intent curve, three revenue streams, and the back-office gap.",
+      "description": "Visual aids inside the Playbook that summarize each chapter's argument.",
+      "tags": ["diagrams", "figures", "playbook", "visual"]
+    },
+    {
+      "id": "about-philosophy",
+      "title": "Agency philosophy",
+      "url": "/about",
+      "kind": "topic",
+      "lead": "The agency's principles, philosophy, and the operating habits we apply to every engagement.",
+      "description": "Working habits and principles — earned in real campaigns — that the agency runs by.",
+      "tags": ["philosophy", "principles", "about", "habits"]
+    },
+    {
+      "id": "fit-check-tool",
+      "title": "Fit check (60-second self-check)",
+      "url": "/check",
+      "kind": "topic",
+      "lead": "Five questions, an honest answer — including not-yet and not-a-fit verdicts.",
+      "description": "The interactive self-check for Amazon Influencers wondering whether to apply.",
+      "tags": ["check", "fit", "quiz", "self-check", "tool"]
+    },
+    {
+      "id": "calendly-call",
+      "title": "30-minute intro call",
+      "url": "https://calendly.com/matthew-beagleforpm/30min",
+      "kind": "topic",
+      "lead": "Skip the form. Pick a slot directly. Creators and brands both welcome.",
+      "description": "The direct Calendly link for booking an intro call with the agency.",
+      "tags": ["calendly", "call", "intro", "booking", "schedule"]
+    },
+    {
+      "id": "topic-cadence",
+      "title": "Cadence",
+      "url": "/journal/on-site-review-explained#what-this-means-for-creators",
+      "kind": "topic",
+      "lead": "Why two-a-week beats one-perfect-a-month on the on-site review format.",
+      "description": "Topic on the cadence discipline the on-site format rewards.",
+      "tags": ["cadence", "rhythm", "consistency", "topic"]
+    },
+    {
+      "id": "topic-back-office",
+      "title": "The back office",
+      "url": "/playbook#gap",
+      "kind": "topic",
+      "lead": "The work that doesn't show up on camera — but compounds for everyone who does it.",
+      "description": "Topic on the back-office gap the agency exists to fill.",
+      "tags": ["back office", "operations", "agency", "topic"]
+    },
+    {
+      "id": "topic-brand-deals",
+      "title": "Brand deals on the program",
+      "url": "/playbook#earn",
+      "kind": "topic",
+      "lead": "The largest of the three revenue streams — when it shows up at all.",
+      "description": "Topic on the direct brand deals available to Amazon Influencer Program creators.",
+      "tags": ["brand deals", "revenue", "income", "topic"]
+    },
+    {
+      "id": "action-search",
+      "title": "Open the search palette",
+      "url": "/search",
+      "kind": "action",
+      "lead": "Quick action — open the dedicated search page.",
+      "description": "Full-page version of the command palette.",
+      "tags": ["action", "search", "find", "palette"]
+    }
+  ]
+}
