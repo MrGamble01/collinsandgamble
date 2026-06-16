@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 270" role="img" aria-labelledby="d2-title">
+<title id="d2-title">Three revenue streams, typical relative scale</title>
+<g font-family="Inter, system-ui, sans-serif">
+  <!-- 01 storefront -->
+  <text x="0"  y="22" font-family="Fraunces, serif" font-style="italic" font-size="20" fill="#e89e3c">01</text>
+  <text x="40" y="22" font-size="14" font-weight="600" fill="#f6f1e7">Storefront commission</text>
+  <rect x="40" y="34" width="640" height="14" rx="2" fill="rgba(246,241,231,0.05)"/>
+  <rect x="40" y="34" width="155" height="14" rx="2" fill="#e89e3c"/>
+  <text x="40" y="68" font-size="12" fill="rgba(246,241,231,0.58)" font-style="italic" font-family="Fraunces, serif">small, steady — runs itself once the storefront's built</text>
+
+  <!-- 02 bounty -->
+  <text x="0"  y="112" font-family="Fraunces, serif" font-style="italic" font-size="20" fill="#e89e3c">02</text>
+  <text x="40" y="112" font-size="14" font-weight="600" fill="#f6f1e7">On-site video bounty</text>
+  <rect x="40" y="124" width="640" height="14" rx="2" fill="rgba(246,241,231,0.05)"/>
+  <rect x="40" y="124" width="320" height="14" rx="2" fill="#e89e3c"/>
+  <text x="40" y="158" font-size="12" fill="rgba(246,241,231,0.58)" font-style="italic" font-family="Fraunces, serif">medium, per qualifying upload — when Amazon runs it</text>
+
+  <!-- 03 brand deals -->
+  <text x="0"  y="202" font-family="Fraunces, serif" font-style="italic" font-size="20" fill="#e89e3c">03</text>
+  <text x="40" y="202" font-size="14" font-weight="600" fill="#f6f1e7">Direct brand deals</text>
+  <rect x="40" y="214" width="640" height="14" rx="2" fill="rgba(246,241,231,0.05)"/>
+  <rect x="40" y="214" width="600" height="14" rx="2" fill="#e89e3c"/>
+  <text x="40" y="248" font-size="12" fill="rgba(246,241,231,0.58)" font-style="italic" font-family="Fraunces, serif">largest, variable — and the one most creators never reach</text>
+</g>
+              </svg>

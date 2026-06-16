@@ -338,88 +338,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   position: relative;
   z-index: 1;
 }
-.hero-art .mark {
-  position: absolute;
-  inset: auto 1.75rem 1.25rem auto;
-  font-family: var(--serif);
-  font-size: clamp(3rem, 7vw, 6rem);
-  color: var(--text);
-  opacity: 0.10;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  font-style: italic;
-}
-.hero-art .mark .amp { color: var(--accent); opacity: 1; }
-.hero-art .stat {
-  position: relative;
-  color: var(--text);
-  max-width: 320px;
-}
-.hero-art .stat strong {
-  font-family: var(--serif);
-  font-size: clamp(2.4rem, 3.6vw, 3.4rem);
-  display: block;
-  color: var(--text);
-  font-weight: 500;
-  line-height: 1.02;
-  letter-spacing: -0.035em;
-}
-.hero-art .stat > span {
-  display: block;
-  font-size: 0.76rem;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-top: 1rem;
-  font-weight: 600;
-}
-.hero-art .stat-steps {
-  list-style: none;
-  padding: 1.75rem 0 0;
-  margin: 1.75rem 0 0;
-  border-top: 1px solid var(--rule);
-  display: grid;
-  gap: 1.1rem;
-  color: var(--text-mute);
-  font-size: 0.98rem;
-  position: relative;
-}
-.hero-art .stat-steps::before {
-  content: "";
-  position: absolute;
-  left: 4px;
-  top: 2rem;
-  bottom: 0.5rem;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--accent) 0%, var(--rule-2) 60%, transparent 100%);
-  opacity: 0.55;
-}
-.hero-art .stat-steps li {
-  display: grid;
-  grid-template-columns: 2.75rem 1fr;
-  gap: 0.5rem;
-  align-items: baseline;
-  position: relative;
-}
-.hero-art .stat-steps li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.55rem;
-  width: 9px;
-  height: 9px;
-  border-radius: 999px;
-  background: var(--accent);
-  box-shadow: 0 0 0 3px var(--surface-2);
-}
-.hero-art .stat-steps em {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 1.2rem;
-  color: var(--accent);
-  letter-spacing: -0.02em;
-  padding-left: 1.35rem;
-}
 
 @media (max-width: 880px) {
   .hero-grid { grid-template-columns: 1fr; }
@@ -723,37 +641,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .card-path-head { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
 }
 
-/* Process */
-.process {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-.process .step {
-  background: var(--surface);
-  padding: 2.25rem 1.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  transition: background 220ms ease;
-}
-.process .step:hover { background: var(--surface-2); }
-.process .step span {
-  font-family: var(--serif);
-  font-size: 2.8rem;
-  color: var(--accent);
-  line-height: 1;
-  font-style: italic;
-  letter-spacing: -0.04em;
-}
-.process .step h3 { font-size: 1.25rem; color: var(--text); margin: 0; }
-.process .step p { margin: 0; font-size: 0.92rem; color: var(--text-mute); line-height: 1.55; }
-@media (max-width: 880px) { .process { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 520px) { .process { grid-template-columns: 1fr; } }
 
 /* Dual workflows */
 .workflows {
@@ -1291,7 +1178,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
 }
-.playbook-figure svg {
+.playbook-figure svg,
+.playbook-figure img {
   width: 100%;
   height: auto;
   display: block;
@@ -2784,6 +2672,4 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 :target, section[id] { scroll-margin-top: 5.5rem; }
 
 /* Utilities */
-.center { text-align: center; }
 .flex { display: flex; gap: 1rem; flex-wrap: wrap; }
-.mt-0 { margin-top: 0; } .mt-1 { margin-top: 1rem; } .mt-2 { margin-top: 2rem; }
