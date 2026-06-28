@@ -2072,6 +2072,440 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 }
 
 /* ----------------------------------------------------------------
+   Earnings Estimator (/math) — interactive creator-side tool
+   ---------------------------------------------------------------- */
+
+.math-wrap { max-width: 1180px; margin: 0 auto; }
+.math-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+}
+.math-grid > * { min-width: 0; }
+@media (max-width: 980px) {
+  .math-grid { grid-template-columns: 1fr; }
+}
+
+/* Form (left) */
+.math-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.75rem;
+  min-width: 0;
+}
+.math-section {
+  background: var(--surface);
+  border: 1px solid var(--rule-2);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.25rem, 2.4vw, 1.8rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.9rem;
+  position: relative;
+}
+.math-section > * { min-width: 0; max-width: 100%; }
+.math-section select { width: 100%; }
+.math-section-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+.math-section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem) !important;
+  margin: -0.4rem 0 0;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.math-section-help {
+  margin: 0 0 0.4rem;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+.math-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+.math-saved {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+.math-saved.is-visible { opacity: 1; }
+
+/* Range slider (cadence) */
+.math-range-field { gap: 0.5rem; }
+.math-range-field label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.math-range-value {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: var(--accent);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.math-range-field input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(
+    to right,
+    var(--accent) 0%,
+    var(--accent) var(--range-pct, 15%),
+    rgba(246, 241, 231, 0.12) var(--range-pct, 15%),
+    rgba(246, 241, 231, 0.12) 100%
+  );
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+}
+.math-range-field input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--text);
+  border: 2px solid var(--accent);
+  cursor: pointer;
+  margin-top: 0;
+  transition: transform 120ms ease;
+}
+.math-range-field input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+.math-range-field input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--text);
+  border: 2px solid var(--accent);
+  cursor: pointer;
+}
+.math-range-field input[type="range"]:focus-visible {
+  box-shadow: 0 0 0 3px rgba(232, 158, 60, 0.3);
+}
+.math-range-scale {
+  display: flex;
+  justify-content: space-between;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+/* Result panel (right) */
+.math-result {
+  position: sticky;
+  top: 6rem;
+  background: var(--surface);
+  border: 1px solid var(--rule-2);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  min-width: 0;
+}
+.math-result-eyebrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+.math-result-eyebrow-meta {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.8rem;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--text-dim);
+  font-weight: 400;
+}
+.math-result-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem;
+  font-family: var(--serif);
+  letter-spacing: -0.04em;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+.math-result-currency {
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  color: var(--accent);
+  font-weight: 500;
+}
+.math-result-low,
+.math-result-high {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 500;
+  line-height: 1;
+  transition: color 200ms ease;
+}
+.math-result-dash {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: var(--text-dim);
+  margin: 0 0.15rem;
+}
+.math-result-per {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+  margin-left: 0.5rem;
+}
+.math-result-likely {
+  margin: 0 0 1.5rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-mute);
+}
+.math-result-likely strong {
+  color: var(--accent);
+  font-style: normal;
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+/* Meter */
+.math-meter { margin: 0 0 1.75rem; }
+.math-meter-track {
+  position: relative;
+  height: 8px;
+  background: rgba(246, 241, 231, 0.08);
+  border-radius: 999px;
+  overflow: visible;
+}
+.math-meter-fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(232, 158, 60, 0.5),
+    var(--accent)
+  );
+  border-radius: 999px;
+  transition: width 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  width: 0;
+}
+.math-meter-marker {
+  position: absolute;
+  top: -5px;
+  width: 4px;
+  height: 18px;
+  background: var(--text);
+  border-radius: 999px;
+  transform: translateX(-50%);
+  transition: left 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  left: 0;
+  box-shadow: 0 0 0 3px var(--surface);
+}
+.math-meter-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+/* Annual line */
+.math-annual {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin: 0 0 1.25rem;
+}
+.math-annual-label {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+.math-annual-value {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+/* Show our math (details) */
+.math-details {
+  border-top: 1px solid var(--rule);
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+}
+.math-details > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  padding: 0.25rem 0;
+  user-select: none;
+}
+.math-details > summary::-webkit-details-marker { display: none; }
+.math-details > summary svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 200ms ease;
+}
+.math-details[open] > summary svg { transform: rotate(180deg); }
+.math-details-body {
+  padding: 1rem 0 0;
+  color: var(--text-mute);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.math-details-body p { margin: 0 0 0.85rem; }
+.math-explainer-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: grid;
+  gap: 1rem;
+}
+.math-explainer-list li {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr;
+  gap: 0.85rem;
+  align-items: start;
+}
+.math-explainer-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+.math-explainer-text { color: var(--text-mute); font-size: 0.9rem; line-height: 1.55; }
+.math-explainer-text strong { color: var(--text); font-weight: 500; }
+.math-explainer-text em {
+  display: block;
+  margin-top: 0.25rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  color: var(--accent);
+  font-style: normal;
+}
+.math-explainer-note {
+  margin: 1rem 0 0 !important;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+/* The three-streams breakdown */
+.math-breakdown {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--surface);
+  border: 1px solid var(--rule-2);
+  border-radius: var(--radius-lg);
+}
+.math-breakdown-title {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem) !important;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.025em;
+}
+.math-breakdown-sub {
+  margin: 0 0 1.5rem;
+  color: var(--text-mute);
+  font-size: 0.96rem;
+  line-height: 1.55;
+  max-width: 65ch;
+}
+.math-breakdown-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.1rem;
+}
+.math-breakdown-list li {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.4rem;
+}
+.math-breakdown-bar {
+  height: 8px;
+  background: rgba(246, 241, 231, 0.06);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.math-breakdown-bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+}
+.math-breakdown-list li:nth-child(2) .math-breakdown-bar span { background: rgba(232, 158, 60, 0.65); }
+.math-breakdown-list li:nth-child(3) .math-breakdown-bar span { background: rgba(232, 158, 60, 0.45); }
+.math-breakdown-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+}
+.math-breakdown-meta strong {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  font-weight: 500;
+}
+.math-breakdown-meta span {
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  font-style: italic;
+  font-family: var(--serif);
+}
+
+/* ----------------------------------------------------------------
    Brief Builder (/brief) — interactive brand-side tool
    ---------------------------------------------------------------- */
 

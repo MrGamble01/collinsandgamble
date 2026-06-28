@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Math, Estimated — Collins &amp; Gamble | For Creators</title>
+  <meta name="description" content="A free interactive estimator that turns four answers — cadence, audience, category, and price point — into a low/likely/high projection for Amazon Influencer storefront earnings. With the math shown." />
+  <link rel="canonical" href="https://www.collinsandgamble.com/math" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="The math, estimated — Collins &amp; Gamble" />
+  <meta property="og:description" content="A free interactive earnings estimator for the Amazon Influencer Program. Four inputs, an honest range, the math shown." />
+  <meta property="og:url" content="https://www.collinsandgamble.com/math" />
+  <meta property="og:image" content="https://www.collinsandgamble.com/assets/img/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#14181f" />
+
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/" aria-label="Collins and Gamble home">Collins<span class="amp">&amp;</span>Gamble</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/services">How it works</a></li>
+        <li><a href="/playbook">Playbook</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li class="nav-cta-wrap"><a class="nav-cta" href="/contact">Get started
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-header">
+      <div class="container reveal">
+        <span class="eyebrow">For creators · Free tool</span>
+        <h1>The math,<br/><span class="accent">estimated</span>.</h1>
+        <p class="lead">
+          Four inputs in. A low / likely / high monthly range out. Plus the
+          actual math we used to get there, expanded so you can argue with
+          it. This estimates storefront commission only — brand deals are
+          separate, larger, and impossible to model in a calculator. But
+          the storefront half is where most creators leave money on the
+          table, and it's where ranges actually mean something.
+        </p>
+        <p class="header-aside">
+          Why the storefront matters: <a href="/journal/storefront-is-the-store">read the long version</a> · Program-wide context first? <a href="/playbook#earn">how creators actually earn</a>.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container math-wrap" data-math>
+
+        <div class="math-grid">
+          <form class="math-form reveal" data-math-form aria-label="Estimator inputs">
+
+            <div class="math-section">
+              <span class="math-section-num">01</span>
+              <h2 class="math-section-title">Upload cadence</h2>
+              <p class="math-section-help">
+                On-site review uploads per week. Cadence drives almost
+                everything — Amazon rewards recency and the storefront only
+                compounds when you keep showing up.
+              </p>
+              <div class="field math-range-field">
+                <label for="m-cadence">
+                  <span>Reviews per week</span>
+                  <output data-out="cadence" class="math-range-value">3</output>
+                </label>
+                <input id="m-cadence" type="range" min="0" max="20" step="1" value="3" data-key="cadence" />
+                <div class="math-range-scale" aria-hidden="true">
+                  <span>0</span><span>5</span><span>10</span><span>15</span><span>20</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="math-section">
+              <span class="math-section-num">02</span>
+              <h2 class="math-section-title">Audience reach</h2>
+              <p class="math-section-help">
+                The audience that actually <em>watches your reviews</em> —
+                not your follower count. Better to under-estimate. We use
+                this to model how many shoppers land on a storefront link
+                through your content in a month.
+              </p>
+              <div class="field">
+                <label for="m-audience">Engaged audience size</label>
+                <select id="m-audience" data-key="audience">
+                  <option value="micro">Under 5,000 — just starting</option>
+                  <option value="small" selected>5,000 – 25,000 — small but loyal</option>
+                  <option value="mid">25,000 – 100,000 — mid-scale</option>
+                  <option value="large">100,000 – 500,000 — large reach</option>
+                  <option value="mega">500,000+ — established</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="math-section">
+              <span class="math-section-num">03</span>
+              <h2 class="math-section-title">Primary category</h2>
+              <p class="math-section-help">
+                Amazon's affiliate commission varies by category — some pay
+                meaningfully better than others. We use the Amazon Associates
+                rate schedule (which AIP commission tracks closely) as a
+                baseline, applied to the category your storefront leans
+                into.
+              </p>
+              <div class="field">
+                <label for="m-category">Where most of your storefront sits</label>
+                <select id="m-category" data-key="category">
+                  <option value="luxury">Luxury beauty &amp; high-margin fashion (~10%)</option>
+                  <option value="beauty">Beauty &amp; premium beauty (~6%)</option>
+                  <option value="furniture">Furniture, home improvement, kitchen (~3%)</option>
+                  <option value="fashion" selected>Fashion, clothing, accessories (~4%)</option>
+                  <option value="outdoors">Outdoors, sports, tools (~3%)</option>
+                  <option value="grocery">Grocery, pets, baby (~2%)</option>
+                  <option value="electronics">Consumer electronics (~2%)</option>
+                  <option value="mixed">Mixed across categories (~3%)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="math-section">
+              <span class="math-section-num">04</span>
+              <h2 class="math-section-title">Average price point</h2>
+              <p class="math-section-help">
+                The typical price of items in your storefront. This drives
+                per-click revenue more than anything except cadence — a
+                $200-AOV storefront pays a lot more per click than a $15
+                one, even at lower commission rates.
+              </p>
+              <div class="field">
+                <label for="m-aov">Average product price</label>
+                <select id="m-aov" data-key="aov">
+                  <option value="cheap">Under $25 — small impulse buys</option>
+                  <option value="mid" selected>$25 – $75 — mid-tier</option>
+                  <option value="premium">$75 – $200 — premium</option>
+                  <option value="luxury">$200+ — high-ticket</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="math-form-actions">
+              <button type="button" class="btn btn-ghost" data-math-reset>Reset to defaults</button>
+              <span class="math-saved" data-math-saved hidden>Saved locally</span>
+            </div>
+          </form>
+
+          <aside class="math-result reveal" aria-label="Monthly projection" data-math-result>
+            <div class="math-result-eyebrow">
+              <span>Monthly storefront commission</span>
+              <span class="math-result-eyebrow-meta">estimate</span>
+            </div>
+
+            <div class="math-result-hero">
+              <span class="math-result-currency">$</span>
+              <span class="math-result-low" data-out="low">0</span>
+              <span class="math-result-dash">–</span>
+              <span class="math-result-currency">$</span>
+              <span class="math-result-high" data-out="high">0</span>
+              <span class="math-result-per">/ month</span>
+            </div>
+            <p class="math-result-likely">
+              Likely landing around <strong>$<span data-out="likely">0</span></strong> / mo
+            </p>
+
+            <div class="math-meter" aria-hidden="true">
+              <div class="math-meter-track">
+                <span class="math-meter-fill" data-out="meter-fill"></span>
+                <span class="math-meter-marker" data-out="meter-marker"></span>
+              </div>
+              <div class="math-meter-scale">
+                <span>$0</span>
+                <span>$2k</span>
+                <span>$5k</span>
+                <span>$10k+</span>
+              </div>
+            </div>
+
+            <div class="math-annual">
+              <span class="math-annual-label">Annual projection</span>
+              <span class="math-annual-value">
+                $<span data-out="annual-low">0</span>
+                <span class="math-result-dash">–</span>
+                $<span data-out="annual-high">0</span>
+              </span>
+            </div>
+
+            <details class="math-details">
+              <summary>
+                <span>Show our math</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </summary>
+              <div class="math-details-body">
+                <p>The model assembles four multipliers. Each one swings based on the inputs above.</p>
+                <ol class="math-explainer-list">
+                  <li>
+                    <span class="math-explainer-num">A</span>
+                    <span class="math-explainer-text">
+                      <strong>Storefront clicks per month</strong> =
+                      uploads/week × 4.3 weeks × audience-engagement curve.
+                      The curve scales sub-linearly — a 100k creator gets
+                      roughly 4× the storefront clicks of a 10k creator,
+                      not 10×.
+                      <em>(now: <span data-out="A">—</span>)</em>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="math-explainer-num">B</span>
+                    <span class="math-explainer-text">
+                      <strong>Conversion to a purchased session</strong> =
+                      3–8% of storefront clicks turn into at least one
+                      purchase in the same 24-hour window. Lower end =
+                      browse traffic; upper end = intent-heavy traffic from
+                      review-watchers.
+                      <em>(now: <span data-out="B">3–8%</span>)</em>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="math-explainer-num">C</span>
+                    <span class="math-explainer-text">
+                      <strong>Session value</strong> = average product
+                      price × 1.4 (low) to 2.0 (high) — shoppers who arrive
+                      through a storefront link buy more than just the
+                      linked item. That multiplier is the storefront's main
+                      financial argument.
+                      <em>(now: <span data-out="C">—</span>)</em>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="math-explainer-num">D</span>
+                    <span class="math-explainer-text">
+                      <strong>Commission rate</strong> = Amazon Associates
+                      schedule for the category you picked. Most categories
+                      sit between 1% and 4%. Beauty and luxury beauty are
+                      the outliers.
+                      <em>(now: <span data-out="D">—</span>)</em>
+                    </span>
+                  </li>
+                </ol>
+                <p>
+                  Monthly estimate = clicks × conversion × session value ×
+                  commission. The low/high range runs the formula at the
+                  floor and ceiling of every multiplier together.
+                </p>
+                <p class="math-explainer-note">
+                  This is a model, not a guarantee. Amazon publishes rates
+                  but not personal performance. Variance between creators
+                  with identical inputs is significant — execution matters
+                  as much as inputs.
+                </p>
+              </div>
+            </details>
+          </aside>
+        </div>
+
+        <div class="math-breakdown reveal">
+          <h2 class="math-breakdown-title">Where the money sits</h2>
+          <p class="math-breakdown-sub">
+            The three revenue streams of the program, sized to scale by
+            <em>typical</em> contribution. This calculator covers the first
+            two. The third is what the agency actually unlocks — and it
+            isn't model-able.
+          </p>
+          <ul class="math-breakdown-list">
+            <li>
+              <div class="math-breakdown-bar"><span style="width: 26%;"></span></div>
+              <div class="math-breakdown-meta">
+                <strong>Storefront commission</strong>
+                <span>covered above — the steady, monthly part</span>
+              </div>
+            </li>
+            <li>
+              <div class="math-breakdown-bar"><span style="width: 18%;"></span></div>
+              <div class="math-breakdown-meta">
+                <strong>On-site review bounties</strong>
+                <span>variable per-upload bonus — when Amazon's running it</span>
+              </div>
+            </li>
+            <li>
+              <div class="math-breakdown-bar"><span style="width: 92%;"></span></div>
+              <div class="math-breakdown-meta">
+                <strong>Direct brand deals</strong>
+                <span>the largest, the most variable — not in this calculator</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <p class="check-disclaimer reveal">
+          Nothing here is stored on a server. Your settings live in your browser only.
+          <a href="/apply">Run the brand-deal half too? Apply to the roster.</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand">Collins<span class="amp">&amp;</span>Gamble</div>
+          <p class="tagline">Creators film. Creators get paid. We take care of everything else. Amazon Influencer management, end to end.</p>
+        </div>
+        <div>
+          <h2>Agency</h2>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/services">How it works</a></li>
+            <li><a href="/playbook">Playbook</a></li>
+            <li><a href="/journal">Journal</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Two paths</h2>
+          <ul>
+            <li><a href="/apply">Apply (creators)</a></li>
+            <li><a href="/brands">For brands</a></li>
+            <li><a href="/brief">Brief builder</a></li>
+            <li><a href="/math">Earnings math</a></li>
+            <li><a href="/services#capabilities">What we run</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Connect</h2>
+          <ul>
+            <li><a href="https://www.linkedin.com/company/collinsandgamble" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:hello@collinsandgamble.com">hello@collinsandgamble.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="legal">
+        <span>© <span id="y"></span> Collins &amp; Gamble. All rights reserved.</span>
+        <span><a href="/privacy">Privacy</a> · Made with intention.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+  <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/palette.js" defer></script>
+  <script src="/assets/js/estimator.js" defer></script>
+</body>
+</html>
