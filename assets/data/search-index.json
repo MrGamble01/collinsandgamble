@@ -1031,6 +1031,40 @@
         "builder",
         "printable"
       ]
+    },
+    {
+      "id": "tool-math",
+      "title": "Earnings math",
+      "url": "/math",
+      "kind": "action",
+      "lead": "Free tool \u2014 four inputs in, a low/likely/high monthly storefront commission range out, with the math shown.",
+      "description": "Interactive creator-side estimator. Cadence, audience, category, AOV \u2192 modeled monthly earnings with explainer.",
+      "tags": [
+        "math",
+        "tool",
+        "earnings",
+        "estimator",
+        "free",
+        "calculator",
+        "storefront",
+        "commission"
+      ]
+    },
+    {
+      "id": "topic-earnings",
+      "title": "Storefront earnings estimator",
+      "url": "/math",
+      "kind": "topic",
+      "lead": "Modeled monthly storefront commission for any creator profile.",
+      "description": "Topic page for the earnings math tool \u2014 what creators can expect from the storefront half of the program.",
+      "tags": [
+        "earnings",
+        "money",
+        "income",
+        "estimate",
+        "calculator",
+        "topic"
+      ]
     }
   ]
 }
