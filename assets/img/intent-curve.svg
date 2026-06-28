@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" role="img" aria-labelledby="d1-title">
+<title id="d1-title">Where the on-site review lives in the shopper journey</title>
+<!-- intent area -->
+<path d="M 40 250 C 130 240, 195 220, 255 200 C 305 184, 345 158, 420 96 C 460 64, 495 70, 530 100 C 590 150, 640 218, 680 240 L 680 250 L 40 250 Z"
+      fill="rgba(232,158,60,0.07)"/>
+<!-- intent line -->
+<path d="M 40 250 C 130 240, 195 220, 255 200 C 305 184, 345 158, 420 96 C 460 64, 495 70, 530 100 C 590 150, 640 218, 680 240"
+      fill="none" stroke="#e89e3c" stroke-width="1.5" stroke-linecap="round"/>
+<!-- peak guide -->
+<line x1="470" y1="78" x2="470" y2="290" stroke="rgba(246,241,231,0.20)" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="470" cy="80" r="5" fill="#e89e3c"/>
+<!-- peak label -->
+<text x="470" y="40" text-anchor="middle" fill="#f6f1e7" font-size="11" font-weight="600" letter-spacing="0.22em" font-family="Inter, system-ui, sans-serif">ON-SITE REVIEW</text>
+<text x="470" y="62" text-anchor="middle" fill="#e89e3c" font-size="14" font-family="Fraunces, serif" font-style="italic">lives here</text>
+<!-- baseline -->
+<line x1="40" y1="250" x2="680" y2="250" stroke="rgba(246,241,231,0.12)" stroke-width="1"/>
+<!-- stage markers -->
+<g font-family="Inter, system-ui, sans-serif" font-size="11" text-anchor="middle">
+  <circle cx="90"  cy="250" r="3.5" fill="#0a0c10" stroke="rgba(246,241,231,0.40)" stroke-width="1.4"/>
+  <circle cx="220" cy="250" r="3.5" fill="#0a0c10" stroke="rgba(246,241,231,0.40)" stroke-width="1.4"/>
+  <circle cx="350" cy="250" r="3.5" fill="#0a0c10" stroke="rgba(246,241,231,0.40)" stroke-width="1.4"/>
+  <circle cx="470" cy="250" r="4.5" fill="#e89e3c"/>
+  <circle cx="610" cy="250" r="3.5" fill="#0a0c10" stroke="rgba(246,241,231,0.40)" stroke-width="1.4"/>
+  <text x="90"  y="272" fill="rgba(246,241,231,0.58)">discovery</text>
+  <text x="220" y="272" fill="rgba(246,241,231,0.58)">interest</text>
+  <text x="350" y="272" fill="rgba(246,241,231,0.58)">research</text>
+  <text x="470" y="272" fill="#f6f1e7" font-weight="600">decision</text>
+  <text x="610" y="272" fill="rgba(246,241,231,0.58)">purchase</text>
+</g>
+<!-- channel brackets -->
+<g font-family="Inter, system-ui, sans-serif" font-size="9" letter-spacing="0.22em" text-anchor="middle">
+  <line x1="90" y1="298" x2="350" y2="298" stroke="rgba(246,241,231,0.20)" stroke-width="1"/>
+  <line x1="90" y1="295" x2="90" y2="298" stroke="rgba(246,241,231,0.20)" stroke-width="1"/>
+  <line x1="350" y1="295" x2="350" y2="298" stroke="rgba(246,241,231,0.20)" stroke-width="1"/>
+  <text x="220" y="314" fill="rgba(246,241,231,0.58)">OFF-SITE REACH</text>
+  <line x1="420" y1="298" x2="520" y2="298" stroke="#e89e3c" stroke-width="1"/>
+  <line x1="420" y1="295" x2="420" y2="298" stroke="#e89e3c" stroke-width="1"/>
+  <line x1="520" y1="295" x2="520" y2="298" stroke="#e89e3c" stroke-width="1"/>
+  <text x="470" y="314" fill="#e89e3c">ON-SITE</text>
+</g>
+              </svg>

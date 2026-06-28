@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" role="img" aria-labelledby="d3-title">
+<title id="d3-title">What a creator does alone vs. with the agency</title>
+<g font-family="Inter, system-ui, sans-serif" font-size="11">
+
+  <!-- LEFT: creator alone -->
+  <text x="170" y="32" text-anchor="middle" fill="rgba(246,241,231,0.58)" font-size="10" letter-spacing="0.24em" font-weight="600">CREATOR ALONE</text>
+
+  <!-- spokes (drawn before circle so circle covers their roots) -->
+  <g stroke="rgba(246,241,231,0.22)" stroke-width="1">
+    <line x1="170" y1="200" x2="170" y2="118"/>
+    <line x1="170" y1="200" x2="78"  y2="138"/>
+    <line x1="170" y1="200" x2="40"  y2="200"/>
+    <line x1="170" y1="200" x2="78"  y2="262"/>
+    <line x1="170" y1="200" x2="262" y2="262"/>
+    <line x1="170" y1="200" x2="300" y2="200"/>
+    <line x1="170" y1="200" x2="262" y2="138"/>
+  </g>
+
+  <!-- creator hub -->
+  <circle cx="170" cy="200" r="42" fill="rgba(232,158,60,0.10)" stroke="#e89e3c" stroke-width="1.5"/>
+  <text x="170" y="196" text-anchor="middle" fill="#f6f1e7" font-size="11" font-weight="600" letter-spacing="0.18em">CREATOR</text>
+  <text x="170" y="216" text-anchor="middle" fill="#e89e3c" font-family="Fraunces, serif" font-style="italic" font-size="13">all of it</text>
+
+  <!-- task labels -->
+  <g fill="rgba(246,241,231,0.80)" text-anchor="middle">
+    <text x="170" y="108">filming</text>
+    <text x="68"  y="128">brand outreach</text>
+    <text x="28"  y="204">contracts</text>
+    <text x="68"  y="282">storefront</text>
+    <text x="272" y="282">content coaching</text>
+    <text x="316" y="204">analytics</text>
+    <text x="272" y="128">sourcing</text>
+  </g>
+
+  <!-- divider -->
+  <line x1="360" y1="58" x2="360" y2="342" stroke="rgba(246,241,231,0.12)" stroke-dasharray="2 5"/>
+
+  <!-- RIGHT: with the agency -->
+  <text x="550" y="32" text-anchor="middle" fill="#e89e3c" font-size="10" letter-spacing="0.24em" font-weight="600">WITH THE AGENCY</text>
+
+  <!-- agency ring -->
+  <rect x="395" y="56" width="310" height="296" rx="14" fill="rgba(232,158,60,0.05)" stroke="#e89e3c" stroke-width="1.5"/>
+
+  <!-- agency label -->
+  <text x="550" y="82" text-anchor="middle" fill="#e89e3c" font-family="Fraunces, serif" font-style="italic" font-size="14">Collins &amp; Gamble holds</text>
+
+  <!-- absorbed tasks -->
+  <g fill="rgba(246,241,231,0.80)">
+    <text x="420" y="120">sourcing</text>
+    <text x="680" y="120" text-anchor="end">brand outreach</text>
+    <text x="420" y="148">contracts</text>
+    <text x="680" y="148" text-anchor="end">storefront</text>
+    <text x="420" y="320">content coaching</text>
+    <text x="680" y="320" text-anchor="end">analytics</text>
+  </g>
+
+  <!-- creator hub on right -->
+  <line x1="550" y1="180" x2="550" y2="200" stroke="rgba(246,241,231,0.30)" stroke-width="1"/>
+  <text x="550" y="174" text-anchor="middle" fill="#f6f1e7" font-weight="600">filming</text>
+  <circle cx="550" cy="240" r="42" fill="rgba(246,241,231,0.04)" stroke="#f6f1e7" stroke-width="1.5"/>
+  <text x="550" y="236" text-anchor="middle" fill="#f6f1e7" font-size="11" font-weight="600" letter-spacing="0.18em">CREATOR</text>
+  <text x="550" y="256" text-anchor="middle" fill="#e89e3c" font-family="Fraunces, serif" font-style="italic" font-size="13">just films</text>
+</g>
+              </svg>
