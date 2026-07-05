@@ -1065,6 +1065,21 @@
         "calculator",
         "topic"
       ]
+    },
+    {
+      "id": "journal-feed",
+      "title": "Subscribe via RSS",
+      "url": "/journal/feed.xml",
+      "kind": "action",
+      "lead": "The Journal as an RSS feed \u2014 subscribe in your reader of choice.",
+      "description": "Real internet plumbing. New Journal pieces show up in your feed reader when they're published.",
+      "tags": [
+        "rss",
+        "feed",
+        "subscribe",
+        "journal",
+        "reader"
+      ]
     }
   ]
 }
