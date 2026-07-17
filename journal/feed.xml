@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Collins &amp; Gamble Journal</title>
+    <link>https://www.collinsandgamble.com/journal</link>
+    <atom:link href="https://www.collinsandgamble.com/journal/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Long-form essays from Collins &amp; Gamble on the practice of the Amazon Influencer Program — closer reads on the moments we've earned a strong opinion.</description>
+    <language>en-us</language>
+    <copyright>© Collins &amp; Gamble</copyright>
+    <managingEditor>hello@collinsandgamble.com (The agency)</managingEditor>
+    <webMaster>hello@collinsandgamble.com (The agency)</webMaster>
+    <generator>Collins &amp; Gamble (hand-authored)</generator>
+    <ttl>1440</ttl>
+
+    <item>
+      <title>How to get approved by the Influencer Program</title>
+      <link>https://www.collinsandgamble.com/journal/how-to-get-approved</link>
+      <guid isPermaLink="true">https://www.collinsandgamble.com/journal/how-to-get-approved</guid>
+      <pubDate>Fri, 22 May 2026 12:00:00 +0000</pubDate>
+      <category>Guide</category>
+      <author>hello@collinsandgamble.com (The agency)</author>
+      <description>We can't accelerate Amazon's approval — but we can tell you what the bar appears to be, what to put on the channels you submit, and the three patterns we see most often in declined applications. A practical guide for creators trying to get into the program.</description>
+    </item>
+
+    <item>
+      <title>Why we won't approve a script</title>
+      <link>https://www.collinsandgamble.com/journal/no-script-approval</link>
+      <guid isPermaLink="true">https://www.collinsandgamble.com/journal/no-script-approval</guid>
+      <pubDate>Wed, 15 Apr 2026 12:00:00 +0000</pubDate>
+      <category>Stance</category>
+      <author>hello@collinsandgamble.com (The agency)</author>
+      <description>Every brand asks at some point. The answer is no, and the reasoning is mechanical, not philosophical. Why pre-approved scripts underperform on the on-site review format, the five-section brief we use instead, and how brand-safety concerns get answered without one.</description>
+    </item>
+
+    <item>
+      <title>Treat the storefront like the store</title>
+      <link>https://www.collinsandgamble.com/journal/storefront-is-the-store</link>
+      <guid isPermaLink="true">https://www.collinsandgamble.com/journal/storefront-is-the-store</guid>
+      <pubDate>Wed, 18 Mar 2026 12:00:00 +0000</pubDate>
+      <category>Practice</category>
+      <author>hello@collinsandgamble.com (The agency)</author>
+      <description>The Amazon storefront is the most valuable piece of real estate a creator owns, and the one most consistently underused. A long argument for treating it like inventory, not a profile — with the maintenance discipline most creators skip.</description>
+    </item>
+
+    <item>
+      <title>The on-site review video, explained</title>
+      <link>https://www.collinsandgamble.com/journal/on-site-review-explained</link>
+      <guid isPermaLink="true">https://www.collinsandgamble.com/journal/on-site-review-explained</guid>
+      <pubDate>Sat, 21 Feb 2026 12:00:00 +0000</pubDate>
+      <category>Format</category>
+      <author>hello@collinsandgamble.com (The agency)</author>
+      <description>The format gets less scrutiny than it deserves. What the on-site review video actually is, where Amazon shows it, what creators control, and why a video next to the buy button is a different content problem than a video in a feed.</description>
+    </item>
+
+  </channel>
+</rss>
