@@ -148,7 +148,7 @@
           <div class="cg-palette-empty" data-empty hidden>
             <div class="cg-palette-empty-mark" aria-hidden="true">${ICONS.search}</div>
             <p class="cg-palette-empty-title">No matches.</p>
-            <p class="cg-palette-empty-sub">Try a topic — "storefront", "script", "approval" — or hit ${META_LABEL}&nbsp;K for shortcuts.</p>
+            <p class="cg-palette-empty-sub">Try a topic — "storefront", "script", "approval" — or press ? for shortcuts.</p>
           </div>
           <div class="cg-palette-shortcuts" data-shortcuts hidden>
             <h3>Keyboard shortcuts</h3>
@@ -514,7 +514,14 @@
     if (Number.isNaN(idx)) return;
     if (idx === state.selected) return;
     state.selected = idx;
-    render();
+    // Toggle the selected row in place. Rebuilding the list on every
+    // mousemove replaces the node under the cursor and the highlight jumps.
+    dom.list.querySelectorAll(".cg-palette-row").forEach((el) => {
+      const on = Number(el.dataset.index) === idx;
+      el.classList.toggle("is-selected", on);
+      el.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    updateActiveDescendant();
   }
 
   function onListClick(e) {
@@ -681,6 +688,23 @@
         e.preventDefault();
         close();
         return;
+      }
+      // The dialog is aria-modal. Keep Tab inside it.
+      if (state.open && e.key === "Tab" && dom) {
+        const focusable = [...dom.root.querySelectorAll("button, input, a[href]")].filter(
+          (el) => !el.closest("[hidden]") && el.getClientRects().length
+        );
+        if (focusable.length) {
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
       }
 
       // Vim-style quick-nav: g + <letter>

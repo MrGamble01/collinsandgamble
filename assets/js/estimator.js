@@ -107,10 +107,10 @@
       return o && typeof o === "object" ? o : {};
     } catch (_) { return {}; }
   }
-  function saveDraft(data) {
+  function saveDraft(data, { flash = true } = {}) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      flashSaved();
+      if (flash) flashSaved();
     } catch (_) {}
   }
   function clearDraft() {
@@ -222,9 +222,9 @@
     return Math.min(100, 96 + (amount - 10000) / 5000);
   }
 
-  function render() {
+  function render({ persist = true, flash = true } = {}) {
     const data = readForm();
-    saveDraft(data);
+    if (persist) saveDraft(data, { flash });
 
     // Update the cadence number output (range slider)
     const cadenceEl = root.querySelector("#m-cadence");
@@ -264,7 +264,7 @@
       if (DEFAULTS[key] !== undefined) el.value = DEFAULTS[key];
     }
     clearDraft();
-    render();
+    render({ persist: false });
   }
 
   // ---- Init ------------------------------------------------------------
@@ -286,7 +286,7 @@
     form.addEventListener("change", schedule);
     if (resetBtn) resetBtn.addEventListener("click", reset);
 
-    render();
+    render({ persist: false });
   }
 
   init();

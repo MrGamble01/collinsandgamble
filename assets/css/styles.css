@@ -1648,7 +1648,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   border-color: var(--accent);
   color: var(--text);
   background: rgba(232, 158, 60, 0.06);
-  outline: none;
+}
+.nav-search:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 .nav-search svg { width: 14px; height: 14px; color: var(--accent); }
 .nav-search kbd {
@@ -2622,7 +2625,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   border-color: var(--accent);
   color: var(--text);
   background: rgba(232, 158, 60, 0.06);
-  outline: none;
+}
+.brief-tool:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 .brief-tool svg { width: 15px; height: 15px; }
 .brief-tool.is-flash { color: var(--accent); border-color: var(--accent); }
@@ -3293,7 +3299,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 }
 .quiz-option svg { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; opacity: 0; transform: translateX(-4px); transition: opacity 180ms ease, transform 180ms ease; }
 .quiz-option:hover, .quiz-option:focus-visible {
-  border-color: var(--accent); background: var(--accent-soft); transform: translateX(2px); outline: none;
+  border-color: var(--accent); background: var(--accent-soft); transform: translateX(2px);
+}
+.quiz-option:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 .quiz-option:hover svg, .quiz-option:focus-visible svg { opacity: 1; transform: translateX(0); }
 .quiz-option.selected { border-color: var(--accent); background: var(--accent-soft); }
@@ -3306,7 +3316,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   transition: color 180ms ease;
 }
 .quiz-back svg { width: 16px; height: 16px; }
-.quiz-back:hover { color: var(--text); }
+.quiz-back:hover, .quiz-back:focus-visible { color: var(--text); }
+.quiz-back:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 /* Result */
 .quiz-result-title {

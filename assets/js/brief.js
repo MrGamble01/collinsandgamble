@@ -35,10 +35,10 @@
       return {};
     }
   }
-  function saveDraft(data) {
+  function saveDraft(data, { flash = true } = {}) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      flashSaved();
+      if (flash) flashSaved();
     } catch (_) {
       // localStorage may be unavailable (private mode); silent.
     }
@@ -138,7 +138,7 @@
     }
   }
 
-  function render() {
+  function render({ persist = true, flash = true } = {}) {
     const data = readForm();
     renderTitle(data);
     renderMeta(data);
@@ -168,7 +168,7 @@
       listify(data.avoid),
       "Add out-of-bounds claims in section 05 (one per line)."
     );
-    saveDraft(data);
+    if (persist) saveDraft(data, { flash });
   }
 
   // ---------- Plain-text export ----------------------------------------
@@ -277,7 +277,7 @@
     if (!confirm("Clear the form and start over?")) return;
     for (const el of inputs) el.value = "";
     clearDraft();
-    render();
+    render({ persist: false });
   }
 
   // ---------- Init ------------------------------------------------------
@@ -313,7 +313,7 @@
       }
     });
 
-    render();
+    render({ persist: false });
   }
 
   init();

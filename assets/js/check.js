@@ -107,9 +107,9 @@
   const liveRegion = root.querySelector("[data-live]");
 
   const ARROW =
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>';
+    '<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>';
 
-  function renderQuestion() {
+  function renderQuestion({ focus = true } = {}) {
     const q = QUESTIONS[current];
     progressFill.style.width = (current / QUESTIONS.length) * 100 + "%";
     stepLabel.textContent = `Question ${current + 1} of ${QUESTIONS.length}`;
@@ -128,7 +128,8 @@
     backBtn.hidden = current === 0;
     if (liveRegion) liveRegion.textContent = `Question ${current + 1} of ${QUESTIONS.length}: ${q.q}`;
     const focusTarget = optionsEl.querySelector(".quiz-option.selected") || optionsEl.querySelector(".quiz-option");
-    if (focusTarget) focusTarget.focus();
+    // Don't steal focus on the first paint — that scrolls the quiz over the intro.
+    if (focus && focusTarget) focusTarget.focus();
   }
 
   function choose(opt) {
@@ -212,5 +213,5 @@
   const fallback = root.querySelector("[data-fallback]");
   if (fallback) fallback.hidden = true;
   quizPanel.hidden = false;
-  renderQuestion();
+  renderQuestion({ focus: false });
 })();

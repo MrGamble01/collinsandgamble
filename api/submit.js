@@ -66,24 +66,28 @@ export default async function handler(req, res) {
     process.env.FORM_FROM_EMAIL ||
     "Collins & Gamble <onboarding@resend.dev>";
 
-  const r = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to: [to],
-      reply_to: replyTo || undefined,
-      subject,
-      text,
-    }),
-  });
+  let r;
+  try {
+    r = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [to],
+        reply_to: replyTo || undefined,
+        subject,
+        text,
+      }),
+    });
+  } catch (_err) {
+    return res.status(502).json({ error: "Send failed" });
+  }
 
   if (!r.ok) {
-    const detail = await r.text().catch(() => "");
-    return res.status(502).json({ error: "Send failed", detail });
+    return res.status(502).json({ error: "Send failed" });
   }
 
   return res.status(200).json({ ok: true });
