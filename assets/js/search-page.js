@@ -90,24 +90,33 @@
   }
 
   // ----- Highlight ------------------------------------------------------
-  function highlight(text, terms) {
-    if (!text) return "";
-    const esc = (s) => s.replace(/[&<>"]/g, (c) =>
+  function escapeHTML(s) {
+    return (s || "").replace(/[&<>"]/g, (c) =>
       ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])
     );
-    if (!terms || terms.length === 0) return esc(text);
-    const escaped = esc(text);
-    let out = escaped;
-    // Sort terms by length descending so longer matches win
-    const sorted = [...new Set(terms)].sort((a, b) => b.length - a.length);
-    for (const term of sorted) {
-      if (term.length < 2) continue;
-      const re = new RegExp(
-        `(${term.replace(/[.*+?^${}()|[\\\]\\\\]/g, "\\$&")})`,
-        "gi"
-      );
-      out = out.replace(re, "<mark>$1</mark>");
+  }
+  function escapeReg(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  // Highlight matches in the raw string, then escape. Matching after
+  // escaping can split entities like "&amp;" and leak broken markup.
+  function highlight(text, terms) {
+    if (!text) return "";
+    const usable = [...new Set(terms || [])]
+      .filter((t) => t && t.length >= 2)
+      .sort((a, b) => b.length - a.length);
+    if (usable.length === 0) return escapeHTML(text);
+    const re = new RegExp(usable.map(escapeReg).join("|"), "gi");
+    let out = "";
+    let last = 0;
+    for (const match of text.matchAll(re)) {
+      const index = match.index || 0;
+      out += escapeHTML(text.slice(last, index));
+      out += "<mark>" + escapeHTML(match[0]) + "</mark>";
+      last = index + match[0].length;
     }
+    out += escapeHTML(text.slice(last));
     return out;
   }
 

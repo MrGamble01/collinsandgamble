@@ -1,19 +1,49 @@
 (() => {
   document.documentElement.classList.add("js");
 
+  // The published site search URL used to be /?q=. Send those visits to
+  // the real search page so the query isn't silently dropped.
+  const searchQuery = new URLSearchParams(location.search).get("q");
+  if (
+    searchQuery &&
+    (location.pathname === "/" || location.pathname === "/index.html")
+  ) {
+    location.replace("/search?q=" + encodeURIComponent(searchQuery));
+    return;
+  }
+
   const toggle = document.querySelector(".nav-toggle");
   const links = document.querySelector(".nav-links");
   if (toggle && links) {
+    const mobileNav = window.matchMedia("(max-width: 820px)");
+    const closeNav = (restoreFocus) => {
+      links.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+      syncNavInert();
+      if (restoreFocus) toggle.focus();
+    };
+    const syncNavInert = () => {
+      const closedOnMobile = mobileNav.matches && !links.classList.contains("open");
+      if (closedOnMobile) links.setAttribute("inert", "");
+      else links.removeAttribute("inert");
+    };
+    syncNavInert();
+    mobileNav.addEventListener("change", syncNavInert);
+
     toggle.addEventListener("click", () => {
       const open = links.classList.toggle("open");
       toggle.setAttribute("aria-expanded", String(open));
+      syncNavInert();
     });
     links.querySelectorAll("a").forEach((a) =>
-      a.addEventListener("click", () => {
-        links.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
-      })
+      a.addEventListener("click", () => closeNav(false))
     );
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && links.classList.contains("open")) {
+        e.preventDefault();
+        closeNav(true);
+      }
+    });
   }
 
   const reveal = document.querySelectorAll(".reveal");
@@ -130,6 +160,16 @@
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      // Bare domains fail type=url. Add a scheme before the browser checks.
+      form.querySelectorAll('input[type="url"]').forEach((input) => {
+        const value = input.value.trim();
+        if (value && !/^[a-z][a-z0-9+.-]*:/i.test(value)) {
+          input.value = "https://" + value;
+        }
+      });
+      if (typeof form.reportValidity === "function" && !form.reportValidity()) {
+        return;
+      }
       const data = new FormData(form);
       const honeypot = (data.get("website") || "").toString().trim();
       const thanksUrl = form.dataset.thanks || "/thanks";

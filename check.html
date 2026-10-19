@@ -80,9 +80,9 @@
               <div class="quiz-progress-track"><span class="quiz-progress-fill" data-progress></span></div>
               <span class="quiz-step" data-step>Question 1 of 5</span>
             </div>
-            <h2 class="quiz-question" data-question></h2>
+            <h2 class="quiz-question" id="quiz-question" data-question></h2>
             <p class="quiz-help" data-help></p>
-            <div class="quiz-options" data-options></div>
+            <div class="quiz-options" role="group" aria-labelledby="quiz-question" data-options></div>
             <button type="button" class="quiz-back" data-back hidden>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M19 12H5M11 19l-7-7 7-7"/></svg>
               Back
