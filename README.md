@@ -32,14 +32,17 @@ python3 -m http.server 8000
 # then open http://localhost:8000
 ```
 
-## What to update before launch
+## Forms and mail
 
-- Replace `hello@collinsandgamble.com` with the real inbox.
-- Confirm or update the LinkedIn URL (`/company/collinsandgamble`).
-- If the production domain isn't `www.collinsandgamble.com`, update canonical
-  URLs, sitemap, robots, and JSON-LD URLs accordingly.
-- Wire the contact form to a real handler (Formspree, Resend, custom function,
-  etc.) — the current submit handler shows a confirmation but does not send.
-  Make sure the handler routes creator vs. brand submissions to the right
-  inboxes.
-- Add real creator/brand case studies, press, or roster examples as they land.
+`/contact`, `/apply`, and `/brands` post to `api/submit.js`, which sends mail
+through Resend when `RESEND_API_KEY` is set in the host. Creator applications
+go to `apply@collinsandgamble.com`. Everything else goes to
+`hello@collinsandgamble.com`. If the key is missing, the page falls back to a
+`mailto:` link. Do not remove `novalidate` on those forms — the script adds
+`https://` to bare URLs and then calls `reportValidity()`.
+
+## Pages
+
+Home, services, about, contact, playbook, apply, brands, brief, check, math,
+journal (and four essays), search, privacy, thanks, and 404. Canonicals,
+sitemap, and robots use `https://www.collinsandgamble.com`.

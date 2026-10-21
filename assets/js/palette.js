@@ -94,7 +94,7 @@
     li.className = "nav-search-wrap";
     li.innerHTML = `
       <button type="button" data-palette-trigger class="nav-search"
-              aria-label="Open search (${META_LABEL} K)">
+              aria-label="Search ${META_LABEL} K">
         ${ICONS.search}
         <span>Search</span>
         <kbd>${META_LABEL} K</kbd>
