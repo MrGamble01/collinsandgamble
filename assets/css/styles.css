@@ -3394,3 +3394,76 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 
 /* Utilities */
 .flex { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* Phone tap targets. Border box is at least 44×44. Extra padding on text
+   links is given back with a negative margin so lines and lists stay put. */
+@media (max-width: 820px) {
+  a,
+  button,
+  summary,
+  .check-pill {
+    box-sizing: border-box;
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  p > a,
+  li > a,
+  dd > a,
+  .legal a,
+  .form-note a,
+  .check-disclaimer a,
+  .article-body a,
+  .prose-body a,
+  .playbook-inline-cta a,
+  .journal-note a {
+    margin-block: -7px;
+    max-width: 100%;
+  }
+
+  .nav-links {
+    align-items: flex-start;
+    width: 100%;
+  }
+  .nav-links > li {
+    width: auto;
+  }
+  .nav-links > li.nav-cta-wrap {
+    width: 100%;
+  }
+  .nav-links a {
+    display: flex;
+    width: auto;
+    margin: 0;
+    min-height: 44px;
+    min-width: 44px;
+    padding-block: 0.55rem;
+    padding-inline: 2px;
+  }
+
+  .site-header .brand {
+    display: inline-flex;
+    align-items: center;
+    margin-block: 0;
+  }
+
+  .field input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  .field select,
+  .field textarea,
+  .search-form input[type="search"] {
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+  .math-range-field input[type="range"] {
+    height: 44px;
+    background-repeat: no-repeat;
+    background-size: 100% 6px;
+    background-position: center;
+  }
+}
