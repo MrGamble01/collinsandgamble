@@ -2405,6 +2405,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   color: var(--text);
   letter-spacing: -0.02em;
 }
+@media (max-width: 820px) {
+  /* The hero dash size was splitting "$130 – $1,288" onto two lines. */
+  .math-annual { flex-wrap: wrap; }
+  .math-annual-value { white-space: nowrap; }
+  .math-annual-value .math-result-dash { font-size: 1em; margin: 0 0.12rem; }
+}
 
 /* Show our math (details) */
 .math-details {
