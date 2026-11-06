@@ -2695,7 +2695,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   font-size: 0.7rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: #b6781e;
+  color: #996519;
   font-weight: 600;
   display: block;
   margin-bottom: 0.55rem;
@@ -2708,7 +2708,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   margin: 0 0 0.3rem;
   color: #14181f;
 }
-.brief-doc-title.is-placeholder { color: rgba(20, 24, 31, 0.40); font-style: italic; }
+.brief-doc-title.is-placeholder { color: rgba(20, 24, 31, 0.64); font-style: italic; }
 .brief-doc-sub {
   margin: 0 0 0.5rem;
   font-style: italic;
@@ -2716,7 +2716,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   color: rgba(20, 24, 31, 0.66);
   font-size: 1rem;
 }
-.brief-doc-sub.is-placeholder { color: rgba(20, 24, 31, 0.36); }
+.brief-doc-sub.is-placeholder { color: rgba(20, 24, 31, 0.64); }
 .brief-doc-meta {
   margin: 0.8rem 0 0;
   font-family: var(--sans);
@@ -2733,7 +2733,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   font-size: 0.66rem !important;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: #b6781e;
+  color: #996519;
   font-weight: 700;
   margin: 0 0 0.55rem;
 }
@@ -2756,16 +2756,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   line-height: 1.55;
   color: #14181f;
 }
-.brief-doc-list-avoid li::marker { content: "✗  "; color: #b6781e; }
+.brief-doc-list-avoid li::marker { content: "✗  "; color: #996519; }
 .brief-doc-placeholder {
   font-style: italic;
-  color: rgba(20, 24, 31, 0.40) !important;
+  color: rgba(20, 24, 31, 0.64) !important;
   list-style: none;
   margin-left: -1.15rem;
 }
 .brief-doc-section p.is-placeholder {
   font-style: italic;
-  color: rgba(20, 24, 31, 0.40);
+  color: rgba(20, 24, 31, 0.64);
 }
 
 .brief-doc-foot {
@@ -2786,7 +2786,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.78rem;
   letter-spacing: 0.06em;
-  color: rgba(20, 24, 31, 0.50);
+  color: rgba(20, 24, 31, 0.64);
 }
 
 /* Print: hide everything but the brief doc */
