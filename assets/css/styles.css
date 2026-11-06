@@ -2084,6 +2084,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 /* Phones have no ⌘K. The trigger lives in the menu (the bar itself
    stays logo + hamburger). Give the palette field a real tap height. */
 @media (max-width: 820px) {
+  .keyboard-hint { display: none; }
   .nav-search {
     justify-content: flex-start;
     min-height: 44px;
