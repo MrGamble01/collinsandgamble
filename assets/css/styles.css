@@ -2104,8 +2104,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .cg-palette-row-arrow { display: none; }
   .cg-palette-row-lead { display: none; }
   .cg-palette-row-kind { font-size: 0.6rem; padding: 0.15rem 0.4rem; }
-  .cg-palette-footer-keys { gap: 0.65rem; }
-  .cg-palette-footer-keys span:last-child { display: none; }
+  /* Arrow-key hints and the shortcut list are for a keyboard. */
+  .cg-palette-shortcut-toggle,
+  .cg-palette-footer-keys { display: none; }
+  .cg-palette-footer { justify-content: flex-end; }
   .cg-palette-shortcuts dl > div { grid-template-columns: 90px 1fr; }
 }
 
