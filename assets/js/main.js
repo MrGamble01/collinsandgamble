@@ -100,7 +100,7 @@
       const optionSets = {
         creator: [
           "Join the roster",
-          "Already on the roster — need help",
+          "In the roster — need help",
           "Just exploring",
         ],
         brand: [
