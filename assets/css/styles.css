@@ -962,6 +962,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   font-weight: 600;
 }
 .contact-info dd { margin: 0; font-size: 1.1rem; color: var(--text); }
+/* The phone tap-target rule makes every link inline-flex, so a long
+   unbreakable URL (the LinkedIn address) widens the page on a 320px phone. */
+.contact-info dd a {
+  display: block;
+  max-width: 100%;
+}
 .contact-info dd a:hover { color: var(--accent); }
 @media (max-width: 880px) { .contact-grid { grid-template-columns: 1fr; } }
 
