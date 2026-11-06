@@ -1,6 +1,13 @@
 (() => {
   document.documentElement.classList.add("js");
 
+  // The skip link points at #main. A non-focusable target does not take
+  // focus, so keyboard and screen-reader users stay on the document.
+  const main = document.getElementById("main");
+  if (main && !main.hasAttribute("tabindex")) {
+    main.setAttribute("tabindex", "-1");
+  }
+
   // The published site search URL used to be /?q=. Send those visits to
   // the real search page so the query isn't silently dropped.
   const searchQuery = new URLSearchParams(location.search).get("q");
