@@ -92,9 +92,11 @@
 
     const li = document.createElement("li");
     li.className = "nav-search-wrap";
+    // Name comes from the visible label. The shortcut <kbd> is hidden
+    // below 1100px, so a fixed "Search Ctrl K" name would announce a
+    // shortcut that is not on screen.
     li.innerHTML = `
-      <button type="button" data-palette-trigger class="nav-search"
-              aria-label="Search ${META_LABEL} K">
+      <button type="button" data-palette-trigger class="nav-search">
         ${ICONS.search}
         <span>Search</span>
         <kbd>${META_LABEL} K</kbd>
