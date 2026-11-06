@@ -104,7 +104,19 @@
     if (ctaWrap) nav.insertBefore(li, ctaWrap);
     else nav.appendChild(li);
 
-    li.querySelector("button").addEventListener("click", open);
+    li.querySelector("button").addEventListener("click", () => {
+      const toggle = document.querySelector(".nav-toggle");
+      const links = document.querySelector(".nav-links");
+      if (toggle && links && links.classList.contains("open")) {
+        links.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        if (window.matchMedia("(max-width: 820px)").matches) {
+          links.setAttribute("inert", "");
+        }
+        toggle.focus();
+      }
+      open();
+    });
   }
 
   // ---- DOM construction -----------------------------------------------
