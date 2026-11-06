@@ -219,7 +219,7 @@
     lines.push("what's true, what matters, and what to avoid — and then");
     lines.push("films in their own voice.");
     lines.push("");
-    lines.push("collinsandgamble.com/brief");
+    lines.push("collinsgamble.com/brief");
     return lines.join("\n");
   }
 
