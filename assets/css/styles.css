@@ -3365,7 +3365,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   font-family: var(--serif);
   font-size: clamp(1.75rem, 3.6vw, 2.5rem) !important;
   line-height: 1.12; letter-spacing: -0.03em;
-  margin: 0.6rem 0 0; color: var(--text); outline: none;
+  margin: 0.6rem 0 0; color: var(--text);
+}
+.quiz-result-title:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 .quiz-meter { display: flex; gap: 0.5rem; margin: 1.5rem 0 0; }
 .quiz-meter-seg {
