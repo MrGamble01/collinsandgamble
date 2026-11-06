@@ -3504,4 +3504,22 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
     width: 44px;
     height: 44px;
   }
+
+  /* Links inside a sentence. A 44px box, pulled back with a negative
+     margin, stacks the hit area onto the line above or below, so a tap
+     opens the wrong link. Inline text is left in the line. */
+  p > a,
+  .header-aside a,
+  .article-body a,
+  .prose-body a,
+  .playbook-inline-cta a,
+  .journal-note a,
+  .check-disclaimer a,
+  .form-note a,
+  .legal a {
+    display: inline;
+    min-height: 0;
+    min-width: 0;
+    margin-block: 0;
+  }
 }
