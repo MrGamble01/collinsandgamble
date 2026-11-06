@@ -2288,6 +2288,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   color: var(--text-dim);
   font-weight: 400;
 }
+@media (max-width: 480px) {
+  /* Wide tracking plus the "estimate" sibling was wrapping
+     "commission" onto a line by itself. Give the label the row. */
+  .math-result-eyebrow {
+    flex-wrap: wrap;
+    row-gap: 0.15rem;
+  }
+  .math-result-eyebrow > span:first-child {
+    flex: 1 0 100%;
+    letter-spacing: 0.2em;
+  }
+  .math-result-eyebrow-meta { margin-left: auto; }
+}
 .math-result-hero {
   display: flex;
   flex-wrap: wrap;
