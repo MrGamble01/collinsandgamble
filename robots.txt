@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /404.html
 
-Sitemap: https://collinsgamble.com/sitemap.xml
+Sitemap: https://www.collinsgamble.com/sitemap.xml
