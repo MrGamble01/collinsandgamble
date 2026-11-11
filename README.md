@@ -45,4 +45,4 @@ go to `apply@collinsandgamble.com`. Everything else goes to
 
 Home, services, about, contact, playbook, apply, brands, brief, check, math,
 journal (and four essays), search, privacy, thanks, and 404. Canonicals,
-sitemap, and robots use `https://www.collinsgamble.com`.
+sitemap, and robots use `https://collinsgamble.com`.
