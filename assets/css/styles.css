@@ -1513,6 +1513,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   padding-top: 0.5rem;
   border-top: 1px solid var(--rule);
 }
+.form-status.is-error {
+  color: var(--text);
+  font-style: normal;
+  font-family: var(--sans);
+  border-top-color: var(--accent);
+}
 .form-status a { color: var(--accent-hot); }
 
 /* Apply timeline */

@@ -189,15 +189,16 @@ test("search index points at real pages", () => {
 
 test("forms declare an allowed inbox and keep browser checks in script", () => {
   const expected = {
-    "contact.html": "hello@collinsandgamble.com",
-    "apply.html": "apply@collinsandgamble.com",
-    "brands.html": "hello@collinsandgamble.com",
+    "contact.html": ["hello@collinsandgamble.com", "contact"],
+    "apply.html": ["apply@collinsandgamble.com", "apply"],
+    "brands.html": ["hello@collinsandgamble.com", "brand"],
   };
-  for (const [name, inbox] of Object.entries(expected)) {
+  for (const [name, [inbox, kind]] of Object.entries(expected)) {
     const page = doc(path.join(root, name));
     const form = page.querySelector("form");
     assert.equal(form.getAttribute("novalidate"), "", `${name} novalidate`);
     assert.equal(form.getAttribute("data-inbox"), inbox, name);
+    assert.equal(form.getAttribute("data-form"), kind, name);
     assert.ok(form.getAttribute("data-subject"), name);
     assert.ok(page.querySelector("#website"), `${name} honeypot`);
     for (const field of form.querySelectorAll("[required]")) {
