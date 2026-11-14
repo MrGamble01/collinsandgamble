@@ -130,23 +130,12 @@ test("internal links, assets, nav, and footer resolve", () => {
     }
 
     const nav = page.querySelectorAll("#primary-nav a").map((a) => a.getAttribute("href"));
-    if (where === "404.html") {
-      assert.equal(nav.length, 0);
-      const recovery = page.querySelectorAll("a").map((a) => a.getAttribute("href"));
-      assert.ok(recovery.includes("/"), "404 links home");
-      assert.ok(recovery.includes("/contact"), "404 links to contact");
-    } else {
-      assert.deepEqual(nav, ["/", "/services", "/playbook", "/about", "/contact", "/contact"], where);
-      const skip = page.querySelector("a.skip-link")?.getAttribute("href");
-      assert.equal(skip, "#main", where);
-    }
+    assert.deepEqual(nav, ["/", "/services", "/playbook", "/about", "/contact", "/contact"], where);
+    const skip = page.querySelector("a.skip-link")?.getAttribute("href");
+    assert.equal(skip, "#main", where);
     navSeen.set(where, nav);
 
     const footer = page.querySelector("footer.site-footer");
-    if (where === "404.html") {
-      assert.equal(footer, null);
-      continue;
-    }
     const paths = [...footer.querySelectorAll("h2")]
       .find((h) => h.text === "Two paths")
       ?.parentNode.querySelectorAll("a")
@@ -162,7 +151,7 @@ test("internal links, assets, nav, and footer resolve", () => {
     footerSeen.set(where, paths);
   }
   assert.equal(navSeen.size, files.length);
-  assert.equal(footerSeen.size, files.length - 1);
+  assert.equal(footerSeen.size, files.length);
 });
 
 test("sitemap lists the indexable pages and the feed", () => {
