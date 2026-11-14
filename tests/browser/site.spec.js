@@ -1,22 +1,29 @@
+import fs from "node:fs";
+import path from "node:path";
 import { expect, test } from "@playwright/test";
 
-const pages = [
-  "/",
-  "/services",
-  "/about",
-  "/contact",
-  "/playbook",
-  "/apply",
-  "/brands",
-  "/brief",
-  "/check",
-  "/math",
-  "/journal",
-  "/journal/on-site-review-explained",
-  "/search",
-  "/privacy",
-  "/thanks",
-];
+function sitePages() {
+  const root = path.resolve(import.meta.dirname, "../..");
+  const found = [];
+  const walk = (dir) => {
+    for (const name of fs.readdirSync(dir)) {
+      if (name === "node_modules" || name === "tests" || name === ".git") continue;
+      const full = path.join(dir, name);
+      if (fs.statSync(full).isDirectory()) {
+        walk(full);
+        continue;
+      }
+      if (!name.endsWith(".html") || name === "404.html") continue;
+      const rel = path.relative(root, full).split(path.sep).join("/");
+      if (rel === "index.html") found.push("/");
+      else found.push("/" + rel.replace(/\/index\.html$/, "").replace(/\.html$/, ""));
+    }
+  };
+  walk(root);
+  return found.sort();
+}
+
+const pages = sitePages();
 
 async function sameOriginFailures(page) {
   const failures = [];
@@ -30,7 +37,9 @@ async function sameOriginFailures(page) {
   return failures;
 }
 
-test("key pages render at desktop and phone width", async ({ page }) => {
+test("every page renders at desktop and phone width", async ({ page }) => {
+  test.setTimeout(90_000);
+  expect(pages.length).toBeGreaterThanOrEqual(18);
   for (const route of pages) {
     for (const width of [1280, 390]) {
       const failures = await sameOriginFailures(page);
