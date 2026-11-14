@@ -38,22 +38,31 @@ function resolveFile(urlPath) {
   return null;
 }
 
+const hostedHeaders = JSON.parse(fs.readFileSync(path.join(root, "vercel.json"), "utf8"))
+  .headers.find((rule) => rule.source === "/(.*)")
+  .headers
+  .reduce((acc, header) => {
+    acc[header.key] = header.value;
+    return acc;
+  }, {});
+
+function send(res, status, type, body, method, extra = {}) {
+  res.writeHead(status, { ...hostedHeaders, "Content-Type": type, ...extra });
+  res.end(method === "HEAD" ? undefined : body);
+}
+
 const server = http.createServer((req, res) => {
   if (req.method !== "GET" && req.method !== "HEAD") {
-    res.writeHead(405, { Allow: "GET, HEAD" });
-    res.end("Method not allowed");
+    send(res, 405, "text/plain; charset=utf-8", "Method not allowed", req.method, { Allow: "GET, HEAD" });
     return;
   }
   const file = resolveFile(req.url || "/");
   if (!file) {
-    const missing = fs.readFileSync(path.join(root, "404.html"));
-    res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
-    res.end(req.method === "HEAD" ? undefined : missing);
+    send(res, 404, "text/html; charset=utf-8", fs.readFileSync(path.join(root, "404.html")), req.method);
     return;
   }
   const body = fs.readFileSync(file);
-  res.writeHead(200, { "Content-Type": types[path.extname(file)] || "application/octet-stream" });
-  res.end(req.method === "HEAD" ? undefined : body);
+  send(res, 200, types[path.extname(file)] || "application/octet-stream", body, req.method);
 });
 
 server.listen(port, "127.0.0.1", () => {
