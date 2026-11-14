@@ -167,6 +167,12 @@
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      // A required text field of only spaces passes the browser check,
+      // then gets dropped when the body is built.
+      form.querySelectorAll("input[required], textarea[required]").forEach((input) => {
+        if (input.type === "checkbox" || input.type === "radio") return;
+        input.value = input.value.trim();
+      });
       // Bare domains fail type=url. Add a scheme before the browser checks.
       form.querySelectorAll('input[type="url"]').forEach((input) => {
         const value = input.value.trim();
@@ -177,90 +183,107 @@
       if (typeof form.reportValidity === "function" && !form.reportValidity()) {
         return;
       }
-      const data = new FormData(form);
-      const honeypot = (data.get("website") || "").toString().trim();
-      const thanksUrl = form.dataset.thanks || "/thanks";
-
-      const fields = collect(data);
-      const fieldsObj = Object.fromEntries(fields);
-
-      // Subject: data-subject prefix + name if we have one.
-      const name = (fields.get("name") || "").trim();
-      const side = (fields.get("side") || "").toLowerCase();
-      const subjectPrefix =
-        side === "creator" ? "Creator inquiry" :
-        side === "brand"   ? "Brand inquiry"   :
-        defaultSubject;
-
-      if (status) {
-        status.textContent = "Sending…";
-        status.hidden = false;
-      }
-
-      // ---- Primary path: POST to the API. Server sends email via Resend.
-      let delivered = false;
+      // Enter and a second click can both submit before the first request
+      // returns. The flag blocks that; the button state is the visible half.
+      if (form.dataset.sending === "true") return;
+      form.dataset.sending = "true";
+      const submitter = e.submitter || form.querySelector('button[type="submit"], button:not([type])');
+      if (submitter) submitter.disabled = true;
+      let leaving = false;
       try {
-        const res = await fetch("/api/submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            to: inbox,
-            subjectPrefix,
-            fields: fieldsObj,
-            honeypot,
-          }),
-        });
-        if (res.ok) delivered = true;
-      } catch (_err) {
-        // Network failed — drop through to the mailto: fallback.
+        const data = new FormData(form);
+        const honeypot = (data.get("website") || "").toString().trim();
+        const thanksUrl = form.dataset.thanks || "/thanks";
+
+        const fields = collect(data);
+        const fieldsObj = Object.fromEntries(fields);
+
+        // Subject: data-subject prefix + name if we have one.
+        const name = (fields.get("name") || "").trim();
+        const side = (fields.get("side") || "").toLowerCase();
+        const subjectPrefix =
+          side === "creator" ? "Creator inquiry" :
+          side === "brand"   ? "Brand inquiry"   :
+          defaultSubject;
+
+        if (status) {
+          status.textContent = "Sending…";
+          status.hidden = false;
+        }
+
+        // ---- Primary path: POST to the API. Server sends email via Resend.
+        let delivered = false;
+        try {
+          const res = await fetch("/api/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              to: inbox,
+              subjectPrefix,
+              fields: fieldsObj,
+              honeypot,
+            }),
+          });
+          if (res.ok) delivered = true;
+        } catch (_err) {
+          // Network failed — drop through to the mailto: fallback.
+        }
+
+        if (delivered) {
+          leaving = true;
+          window.location.assign(thanksUrl);
+          return;
+        }
+
+        // ---- Fallback: mailto:. Still routes through /thanks so the user
+        // experience is identical whether the API delivered or not.
+
+        // Honeypot — real humans never see or touch this field. In fallback
+        // mode we swallow it client-side instead of generating a real email.
+        if (honeypot !== "") {
+          leaving = true;
+          window.location.assign(thanksUrl);
+          return;
+        }
+
+        const lines = [];
+        for (const [k, v] of fields) {
+          lines.push(`${prettify(k)}: ${v}`);
+        }
+        const body = lines.join("\n\n") + "\n";
+        const subject = `${subjectPrefix}${name ? ` — ${name}` : ""}`;
+
+        const href =
+          `mailto:${inbox}` +
+          `?subject=${encodeURIComponent(subject)}` +
+          `&body=${encodeURIComponent(body)}`;
+
+        if (status) {
+          status.innerHTML =
+            `Opening your email client — hit send to deliver the note. ` +
+            `Redirecting in a moment…`;
+        }
+
+        // Fire the mailto: via a transient anchor so the browser hands it
+        // off to the OS email client without navigating the current page.
+        const a = document.createElement("a");
+        a.href = href;
+        a.style.display = "none";
+        a.rel = "noopener";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
+        leaving = true;
+        window.setTimeout(() => {
+          window.location.assign(thanksUrl);
+        }, 400);
+      } finally {
+        if (!leaving) {
+          delete form.dataset.sending;
+          if (submitter) submitter.disabled = false;
+        }
       }
-
-      if (delivered) {
-        window.location.assign(thanksUrl);
-        return;
-      }
-
-      // ---- Fallback: mailto:. Still routes through /thanks so the user
-      // experience is identical whether the API delivered or not.
-
-      // Honeypot — real humans never see or touch this field. In fallback
-      // mode we swallow it client-side instead of generating a real email.
-      if (honeypot !== "") {
-        window.location.assign(thanksUrl);
-        return;
-      }
-
-      const lines = [];
-      for (const [k, v] of fields) {
-        lines.push(`${prettify(k)}: ${v}`);
-      }
-      const body = lines.join("\n\n") + "\n";
-      const subject = `${subjectPrefix}${name ? ` — ${name}` : ""}`;
-
-      const href =
-        `mailto:${inbox}` +
-        `?subject=${encodeURIComponent(subject)}` +
-        `&body=${encodeURIComponent(body)}`;
-
-      if (status) {
-        status.innerHTML =
-          `Opening your email client — hit send to deliver the note. ` +
-          `Redirecting in a moment…`;
-      }
-
-      // Fire the mailto: via a transient anchor so the browser hands it
-      // off to the OS email client without navigating the current page.
-      const a = document.createElement("a");
-      a.href = href;
-      a.style.display = "none";
-      a.rel = "noopener";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-
-      window.setTimeout(() => {
-        window.location.assign(thanksUrl);
-      }, 400);
     });
   }
 })();

@@ -13,13 +13,13 @@
   <meta property="og:title" content="How to get approved by the Amazon Influencer Program." />
   <meta property="og:description" content="What Amazon's bar appears to be, what to put on the channels you submit, and what we see in declined applications." />
   <meta property="og:url" content="https://www.collinsgamble.com/journal/how-to-get-approved" />
-  <meta property="og:image" content="https://collinsgamble.com/assets/img/og.jpg" />
+  <meta property="og:image" content="https://www.collinsgamble.com/assets/img/og.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:alt" content="Collins &amp; Gamble — Amazon Influencer management" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://collinsgamble.com/assets/img/og.jpg" />
+  <meta name="twitter:image" content="https://www.collinsgamble.com/assets/img/og.jpg" />
   <meta name="twitter:image:alt" content="Collins &amp; Gamble — Amazon Influencer management" />
   <meta name="theme-color" content="#14181f" />
 
@@ -40,9 +40,9 @@
     "headline": "How to get approved by the Amazon Influencer Program.",
     "description": "A practical guide to applying — what Amazon's bar appears to be, what to put on the channels you submit, and the three patterns we see in declined applications.",
     "url": "https://www.collinsgamble.com/journal/how-to-get-approved",
-    "image": "https://collinsgamble.com/assets/img/og.jpg",
+    "image": "https://www.collinsgamble.com/assets/img/og.jpg",
     "publisher": { "@type": "Organization", "name": "Collins & Gamble", "url": "https://www.collinsgamble.com/" },
-    "mainEntityOfPage": "https://collinsgamble.com/journal/how-to-get-approved",
+    "mainEntityOfPage": "https://www.collinsgamble.com/journal/how-to-get-approved",
     "datePublished": "2026-05-22",
     "dateModified": "2026-05-22",
     "articleSection": "Guide"
@@ -403,6 +403,7 @@
           <h2>Two paths</h2>
           <ul>
             <li><a href="/apply">Apply (creators)</a></li>
+            <li><a href="/services#creators">For creators</a></li>
             <li><a href="/brands">For brands</a></li>
             <li><a href="/brief">Brief builder</a></li>
             <li><a href="/math">Earnings math</a></li>
@@ -425,7 +426,18 @@
   </footer>
 
   <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
-  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <script>
+    (function () {
+      var host = location.hostname;
+      var onVercel = host === "vercel.app" || host.endsWith(".vercel.app");
+      var onSite = host === "collinsgamble.com" || host.endsWith(".collinsgamble.com");
+      if (!onVercel && !onSite) return;
+      var s = document.createElement("script");
+      s.src = "/_vercel/speed-insights/script.js";
+      s.defer = true;
+      document.body.appendChild(s);
+    })();
+  </script>
   <script src="/assets/js/main.js" defer></script>
   <script src="/assets/js/palette.js" defer></script>
 </body>
