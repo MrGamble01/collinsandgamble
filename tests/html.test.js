@@ -215,6 +215,27 @@ test("the menu button names itself and hides its icon", () => {
   }
 });
 
+test("pages expose named navigation landmarks", () => {
+  for (const file of files) {
+    const page = doc(file);
+    const where = rel(file);
+    const primary = page.querySelector('header nav[aria-label="Primary"]');
+    assert.ok(primary?.querySelector("#primary-nav"), `${where} primary nav`);
+    const footerNavs = page.querySelector("footer.site-footer").querySelectorAll("nav[aria-labelledby]");
+    assert.deepEqual(
+      [...footerNavs].map((nav) => nav.getAttribute("aria-labelledby")),
+      ["footer-agency", "footer-paths", "footer-connect"],
+      where,
+    );
+    for (const nav of footerNavs) {
+      const id = nav.getAttribute("aria-labelledby");
+      assert.equal(nav.querySelector("h2")?.getAttribute("id"), id, `${where} ${id}`);
+    }
+  }
+  const playbook = doc(path.join(root, "playbook.html"));
+  assert.ok(playbook.querySelector('nav.playbook-toc[aria-label="Contents"]'));
+});
+
 test("forms declare an allowed inbox and keep browser checks in script", () => {
   const expected = {
     "contact.html": ["hello@collinsandgamble.com", "contact"],
