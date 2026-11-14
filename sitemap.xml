@@ -47,7 +47,7 @@
   </url>
   <url>
     <loc>https://www.collinsgamble.com/journal</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -76,6 +76,36 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.collinsgamble.com/journal/what-a-creator-manager-does</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.collinsgamble.com/journal/reading-a-brand-deal</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.collinsgamble.com/journal/filming-cadence</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.collinsgamble.com/journal/disclosure-basics</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.collinsgamble.com/journal/reading-your-numbers</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.collinsgamble.com/brief</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -87,7 +117,7 @@
   </url>
   <url>
     <loc>https://www.collinsgamble.com/journal/feed.xml</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
