@@ -469,16 +469,15 @@
     },
     {
       "id": "action-book",
-      "title": "Book a 30-minute intro call",
-      "url": "https://calendly.com/matthew-beagleforpm/30min",
+      "title": "Email the agency",
+      "url": "/contact",
       "kind": "action",
-      "lead": "Quick action \u2014 open the Calendly to grab a slot.",
-      "description": "Schedule the intro call directly on the calendar. Creators and brands welcome.",
+      "lead": "Quick action \u2014 write to the agency inbox.",
+      "description": "Open the contact page. A person reads the note.",
       "tags": [
         "action",
-        "book",
-        "calendly",
-        "call",
+        "email",
+        "contact",
         "intro"
       ]
     },
@@ -946,18 +945,17 @@
       ]
     },
     {
-      "id": "calendly-call",
-      "title": "30-minute intro call",
-      "url": "https://calendly.com/matthew-beagleforpm/30min",
+      "id": "contact-write",
+      "title": "Write to the agency",
+      "url": "/contact",
       "kind": "topic",
-      "lead": "Skip the form. Pick a slot directly. Creators and brands both welcome.",
-      "description": "The direct Calendly link for booking an intro call with the agency.",
+      "lead": "Skip the form and write to the agency inbox.",
+      "description": "The contact page. No personal booking link is published.",
       "tags": [
-        "calendly",
-        "call",
+        "contact",
+        "email",
         "intro",
-        "booking",
-        "schedule"
+        "write"
       ]
     },
     {

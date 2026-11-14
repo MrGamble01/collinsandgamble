@@ -555,7 +555,7 @@
       close();
       return;
     }
-    // External (mailto, calendly, etc.) → open in same tab or new tab
+    // External (mailto, https) → open in the same tab or a new tab
     const external = /^(mailto:|https?:)/.test(url);
     if (newTab) {
       window.open(url, "_blank", "noopener");
