@@ -52,8 +52,9 @@ test("unknown URLs use the 404 page", async ({ page }) => {
   const response = await page.goto("/this-page-does-not-exist");
   expect(response?.status()).toBe(404);
   await expect(page.locator("h1")).toHaveText("Not here.");
-  await expect(page.locator('a[href="/"]')).toBeVisible();
-  await expect(page.locator('a[href="/contact"]')).toBeVisible();
+  await expect(page.getByRole("link", { name: "Back to home" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Get in touch" })).toBeVisible();
+  await expect(page.locator("#primary-nav")).toBeVisible();
   const robots = await page.locator('meta[name="robots"]').getAttribute("content");
   expect(robots).toBe("noindex");
 });
