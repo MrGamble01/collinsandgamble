@@ -54,7 +54,6 @@
   --bg-elev: #1a1f27;
   --surface: #1f2530;
   --surface-2: #262d39;
-  --surface-3: #2f3744;
 
   /* Rules — slightly brighter so dividers actually read */
   --rule: rgba(246, 241, 231, 0.12);
@@ -81,11 +80,6 @@
      0.42 of the cream on the page and on --surface clears 3:1. */
   --control-line: rgba(246, 241, 231, 0.42);
 
-  /* Legacy aliases */
-  --ink-soft: var(--surface);
-  --bronze: var(--accent);
-  --bronze-deep: var(--accent-deep);
-  --paper-soft: var(--paper-2);
   --mute: var(--text-mute);
   --shadow-soft: 0 30px 80px -30px rgba(0, 0, 0, 0.6);
 
@@ -428,12 +422,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 }
 .dark > .container { position: relative; }
 
-/* Light section variant */
-.section.light { background: var(--paper); color: var(--ink); }
-.section.light h1, .section.light h2, .section.light h3 { color: var(--ink); }
-.section.light .lead { color: var(--ink-mute); }
-.section.light .eyebrow { color: var(--accent-deep); }
-
 /* Logos strip — category marquee with a separator pattern */
 .logos {
   border-top: 1px solid var(--rule);
@@ -600,14 +588,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   background: var(--accent);
 }
 .card:hover { background: var(--surface-2); transform: translateY(-2px); }
-
-.section.light .card { background: var(--paper); }
-.section.light .card h3 { color: var(--ink); }
-.section.light .card p { color: var(--ink-mute); }
-.section.light .card ul { color: var(--ink-mute); }
-.section.light .card .num { color: var(--accent-deep); }
-.section.light .card:hover { background: var(--paper-2); }
-.section.light .grid { background: rgba(10,12,16,0.08); border-color: rgba(10,12,16,0.08); }
 
 /* Two-paths (creator + brand portals) */
 .grid-paths .card-path {
@@ -910,10 +890,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   letter-spacing: -0.02em;
 }
 .values article p { color: var(--text-mute); margin: 0; font-size: 0.98rem; line-height: 1.55; }
-.section.light .values article { border-color: rgba(10,12,16,0.15); }
-.section.light .values article h3 { color: var(--ink); }
-.section.light .values article p { color: var(--ink-mute); }
-.section.light .values-num { color: var(--accent-deep); }
 @media (max-width: 760px) { .values { grid-template-columns: 1fr; } }
 
 /* FAQ */
