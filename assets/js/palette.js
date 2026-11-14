@@ -764,8 +764,8 @@
   function initImpl() {
     injectTrigger();
     bindGlobalShortcut();
-    // Preload index in the background so first open is instant
-    setTimeout(loadIndex, 1200);
+    // The index is fetched on first open. Preloading it pulled 34KB of
+    // JSON into every page view, including visits that never search.
   }
   init();
 })();
