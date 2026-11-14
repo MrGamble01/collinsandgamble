@@ -395,6 +395,21 @@
       ]
     },
     {
+      "id": "roster",
+      "title": "Work with our creators",
+      "url": "/roster",
+      "kind": "page",
+      "lead": "Placeholder roster slots by category, plus a brand inquiry.",
+      "description": "Brand-facing roster. Cards are placeholders because the site does not publish creator names, photos, or audience numbers.",
+      "tags": [
+        "roster",
+        "creators",
+        "brands",
+        "placeholder",
+        "inquiry"
+      ]
+    },
+    {
       "id": "brands-fit",
       "title": "What makes a brand fit",
       "url": "/brands",

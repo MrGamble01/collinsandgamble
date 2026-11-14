@@ -165,8 +165,49 @@
       return acc;
     };
 
+    const roster = form.hasAttribute("data-roster-inquiry");
+    const errorPanel = roster ? form.querySelector("[data-form-error]") : null;
+    const successPanel = roster ? document.querySelector("[data-form-success]") : null;
+
+    const showRosterSuccess = () => {
+      if (successPanel) successPanel.hidden = false;
+      form.hidden = true;
+    };
+    const showRosterError = (href) => {
+      if (errorPanel) {
+        errorPanel.hidden = false;
+        const link = errorPanel.querySelector("[data-mailto-fallback]");
+        if (link) link.href = href;
+      }
+      if (status) {
+        status.hidden = false;
+        status.textContent = "We couldn't send that from here.";
+      }
+    };
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      if (roster) {
+        form.querySelectorAll("input[required], textarea[required]").forEach((input) => {
+          if (input.type === "checkbox" || input.type === "radio") return;
+          input.value = input.value.trim();
+        });
+        const boxes = [...form.querySelectorAll('input[name="creators"]')];
+        if (boxes.length === 0) {
+          if (status) {
+            status.hidden = false;
+            status.textContent = "The creator list didn't load. Refresh the page and try again.";
+          }
+          return;
+        }
+        const missingCreators = !boxes.some((box) => box.checked);
+        boxes.forEach((box, index) => {
+          box.setCustomValidity(
+            missingCreators && index === 0 ? "Choose at least one creator." : "",
+          );
+        });
+        if (errorPanel) errorPanel.hidden = true;
+      }
       // Bare domains fail type=url. Add a scheme before the browser checks.
       form.querySelectorAll('input[type="url"]').forEach((input) => {
         const value = input.value.trim();
@@ -177,6 +218,8 @@
       if (typeof form.reportValidity === "function" && !form.reportValidity()) {
         return;
       }
+      const submitter = roster ? form.querySelector('button[type="submit"]') : null;
+      if (submitter) submitter.disabled = true;
       const data = new FormData(form);
       const honeypot = (data.get("website") || "").toString().trim();
       const thanksUrl = form.dataset.thanks || "/thanks";
@@ -216,6 +259,10 @@
       }
 
       if (delivered) {
+        if (roster) {
+          showRosterSuccess();
+          return;
+        }
         window.location.assign(thanksUrl);
         return;
       }
@@ -226,6 +273,10 @@
       // Honeypot — real humans never see or touch this field. In fallback
       // mode we swallow it client-side instead of generating a real email.
       if (honeypot !== "") {
+        if (roster) {
+          showRosterSuccess();
+          return;
+        }
         window.location.assign(thanksUrl);
         return;
       }
@@ -241,6 +292,12 @@
         `mailto:${inbox}` +
         `?subject=${encodeURIComponent(subject)}` +
         `&body=${encodeURIComponent(body)}`;
+
+      if (roster) {
+        if (submitter) submitter.disabled = false;
+        showRosterError(href);
+        return;
+      }
 
       if (status) {
         status.innerHTML =

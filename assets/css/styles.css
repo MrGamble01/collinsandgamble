@@ -3563,3 +3563,33 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
     margin-block: 0;
   }
 }
+
+/* Roster (/roster). Scoped so other pages keep their layout. */
+.roster-note { margin-top: 1.25rem; }
+.roster-grid { margin-top: 2rem; }
+.roster-card .roster-photo {
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 1rem;
+  border: 1px dashed var(--control-line);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text-dim);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.roster-card h3 { margin: 0; }
+.roster-card p { margin: 0; color: var(--text-mute); }
+.roster-success {
+  background: var(--surface);
+  border: 1px solid var(--rule-2);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.75rem, 3vw, 2.75rem);
+}
+.roster-success h2 { margin-top: 0.75rem; }
+.form-status a { text-decoration: underline; text-underline-offset: 3px; }
