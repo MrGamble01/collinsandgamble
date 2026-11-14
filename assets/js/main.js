@@ -181,6 +181,13 @@
         }
       });
       if (typeof form.reportValidity === "function" && !form.reportValidity()) {
+        // The browser tooltip is easy to miss. Repeat it in the form's
+        // status line so the error is text on the page.
+        const invalid = form.querySelector(":invalid");
+        if (status && invalid && invalid.validationMessage) {
+          status.hidden = false;
+          status.textContent = invalid.validationMessage;
+        }
         return;
       }
       // Enter and a second click can both submit before the first request
