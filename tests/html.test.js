@@ -204,6 +204,17 @@ test("search index points at real pages", () => {
   }
 });
 
+test("the menu button names itself and hides its icon", () => {
+  for (const file of files) {
+    const page = doc(file);
+    const where = rel(file);
+    const toggle = page.querySelector("button.nav-toggle");
+    assert.equal(toggle?.getAttribute("aria-label"), "Menu", where);
+    assert.equal(toggle?.getAttribute("aria-controls"), "primary-nav", where);
+    assert.equal(toggle?.querySelector("svg")?.getAttribute("aria-hidden"), "true", where);
+  }
+});
+
 test("forms declare an allowed inbox and keep browser checks in script", () => {
   const expected = {
     "contact.html": ["hello@collinsandgamble.com", "contact"],

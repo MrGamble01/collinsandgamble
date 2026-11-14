@@ -59,6 +59,21 @@ test("unknown URLs use the 404 page", async ({ page }) => {
   expect(robots).toBe("noindex");
 });
 
+test("the closed phone menu is not a tab stop", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 800 });
+  await page.goto("/");
+  await page.keyboard.press("Tab");
+  await expect(page.locator(".skip-link")).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(page.getByRole("link", { name: "Collins&Gamble home" })).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(page.locator(".nav-toggle")).toBeFocused();
+  await expect(page.locator(".nav-toggle")).toHaveAttribute("aria-expanded", "false");
+  await page.keyboard.press("Tab");
+  const insideNav = await page.evaluate(() => Boolean(document.activeElement?.closest("#primary-nav")));
+  expect(insideNav).toBe(false);
+});
+
 test("the phone nav opens and its links go somewhere", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 800 });
   await page.goto("/");

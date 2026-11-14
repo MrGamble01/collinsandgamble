@@ -281,12 +281,17 @@ main[tabindex="-1"]:focus { outline: none; }
     transform: translateY(-12px);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 200ms ease, transform 200ms ease;
+    /* Hidden from the tab order and the accessibility tree while closed,
+       including before the menu script runs. The delay keeps the fade. */
+    visibility: hidden;
+    transition: opacity 200ms ease, transform 200ms ease, visibility 0s linear 200ms;
   }
   .nav-links.open {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+    visibility: visible;
+    transition: opacity 200ms ease, transform 200ms ease, visibility 0s linear 0s;
   }
   .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
   .nav-links a { display: flex; align-items: center; min-height: 44px; width: 100%; }
