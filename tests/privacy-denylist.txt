@@ -1,0 +1,13 @@
+# Generic markers only. Do not add a real client, creator, or person.
+# The privacy test fails when any of these strings shows up in a tracked file,
+# and it also fails when a creator or client image path is added.
+calendly.com
+linkedin.com/in/
+assets/img/creators/
+assets/img/clients/
+assets/img/roster/
+assets/img/headshots/
+creator-headshot
+creator-photo
+client-logo
+client-photo

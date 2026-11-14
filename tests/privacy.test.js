@@ -1,27 +1,65 @@
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 
 const root = path.resolve(import.meta.dirname, "..");
+const denylistPath = path.join(root, "tests/privacy-denylist.txt");
 
-function files(dir = root, out = []) {
-  for (const name of fs.readdirSync(dir)) {
-    if (name === "node_modules" || name === ".git" || name === "test-results") continue;
-    const full = path.join(dir, name);
-    if (fs.statSync(full).isDirectory()) files(full, out);
-    else if (/\.(html|js|json|xml|txt|css|md)$/.test(name)) out.push(full);
-  }
-  return out;
+const TEXT = /\.(html|js|json|css|md|xml|txt|svg|yml|webmanifest)$/;
+const IMAGE = /\.(png|jpe?g|webp|gif|svg|avif)$/i;
+const CREATOR_IMAGE = /(?:^|\/)(?:creators|clients|roster|headshots|portraits)\//i;
+const CREATOR_FILE = /(?:^|\/)(?:creator|client)[-_](?:photo|headshot|portrait|logo)/i;
+
+function denylist() {
+  return fs
+    .readFileSync(denylistPath, "utf8")
+    .split("\n")
+    .map((line) => line.replace(/#.*$/, "").trim())
+    .filter(Boolean);
 }
 
-test("public files do not name a person or a personal booking link", () => {
-  const banned = [/matthew-beagle/i, /calendly\.com/i, /\bJules\b/, /jules@/i];
-  for (const file of files()) {
-    if (file.endsWith("privacy.test.js")) continue;
-    const text = fs.readFileSync(file, "utf8");
-    for (const pattern of banned) {
-      assert.equal(pattern.test(text), false, `${path.relative(root, file)} matches ${pattern}`);
+function trackedFiles() {
+  const out = execFileSync("git", ["ls-files", "-z"], { cwd: root });
+  return out.toString().split("\0").filter(Boolean);
+}
+
+test("the denylist stays generic", () => {
+  const entries = denylist();
+  assert.ok(entries.length >= 5);
+  for (const entry of entries) {
+    assert.match(entry, /^[a-z0-9./_-]+$/, entry);
+    assert.ok(entry.length >= 8, entry);
+  }
+});
+
+test("tracked files do not contain a denylisted marker", () => {
+  const entries = denylist();
+  const hits = [];
+  for (const rel of trackedFiles()) {
+    if (rel === "tests/privacy-denylist.txt") continue;
+    if (!TEXT.test(rel)) continue;
+    const text = fs.readFileSync(path.join(root, rel), "utf8").toLowerCase();
+    for (const entry of entries) {
+      if (text.includes(entry)) hits.push(`${rel} contains ${entry}`);
     }
   }
+  assert.deepEqual(hits, []);
+});
+
+test("no creator or client image path is tracked or referenced", () => {
+  const hits = [];
+  for (const rel of trackedFiles()) {
+    const normalized = rel.replaceAll("\\", "/");
+    if (IMAGE.test(normalized) && (CREATOR_IMAGE.test(normalized) || CREATOR_FILE.test(normalized))) {
+      hits.push(normalized);
+    }
+    if (!TEXT.test(normalized) || normalized === "tests/privacy-denylist.txt" || normalized === "tests/privacy.test.js") {
+      continue;
+    }
+    const text = fs.readFileSync(path.join(root, normalized), "utf8");
+    if (CREATOR_IMAGE.test(text) || CREATOR_FILE.test(text)) hits.push(`${normalized} references a creator image`);
+  }
+  assert.deepEqual(hits, []);
 });
