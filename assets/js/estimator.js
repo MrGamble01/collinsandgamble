@@ -222,6 +222,19 @@
     return Math.min(100, 96 + (amount - 10000) / 5000);
   }
 
+  // The track fill is a CSS gradient stopped at --range-pct. Nothing
+  // else sets that variable, so the amber bar stayed at the 15%
+  // fallback while the thumb moved.
+  function syncRangeFill() {
+    const cadenceEl = root.querySelector("#m-cadence");
+    if (!cadenceEl) return;
+    const min = Number(cadenceEl.min) || 0;
+    const max = Number(cadenceEl.max) || 1;
+    const val = Number(cadenceEl.value);
+    const pct = max === min ? 0 : ((val - min) / (max - min)) * 100;
+    cadenceEl.style.setProperty("--range-pct", pct + "%");
+  }
+
   function render({ persist = true, flash = true } = {}) {
     const data = readForm();
     if (persist) saveDraft(data, { flash });
@@ -229,6 +242,7 @@
     // Update the cadence number output (range slider)
     const cadenceEl = root.querySelector("#m-cadence");
     if (cadenceEl) set("cadence", cadenceEl.value);
+    syncRangeFill();
 
     const r = compute(data);
 
@@ -279,6 +293,7 @@
 
     let renderTimer = null;
     const schedule = () => {
+      syncRangeFill();
       clearTimeout(renderTimer);
       renderTimer = setTimeout(render, 40);
     };

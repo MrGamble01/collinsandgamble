@@ -61,6 +61,9 @@ export default async function handler(req, res) {
   const name = (fields.name ?? "").toString().trim();
   const subject = `${subjectPrefix || "Inquiry"}${name ? ` — ${name}` : ""}`;
   const replyTo = (fields.email ?? "").toString().trim();
+  // A bad reply-to makes Resend reject the whole message. Drop it and
+  // still deliver the note; the address is in the body either way.
+  const safeReply = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyTo) ? replyTo : undefined;
 
   const from =
     process.env.FORM_FROM_EMAIL ||
@@ -77,7 +80,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         from,
         to: [to],
-        reply_to: replyTo || undefined,
+        reply_to: safeReply,
         subject,
         text,
       }),

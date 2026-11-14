@@ -1,0 +1,15 @@
+{
+  "name": "collinsandgamble",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "node --test tests/html.test.js",
+    "test": "node --test tests/html.test.js tests/submit.test.js",
+    "build": "node tests/build-check.js",
+    "test:browser": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "node-html-parser": "^7.0.1"
+  }
+}
