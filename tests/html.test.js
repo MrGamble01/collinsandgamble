@@ -172,6 +172,23 @@ test("sitemap lists the indexable pages and the feed", () => {
   for (const route of hidden) assert.equal(routes.includes(route), false, `noindex page listed ${route}`);
   assert.ok(routes.includes("/journal/feed.xml"));
   assert.equal(read(path.join(root, "robots.txt")).includes(`${CANONICAL_ORIGIN}/sitemap.xml`), true);
+
+  const published = {};
+  for (const file of files) {
+    const where = rel(file);
+    if (!where.startsWith("journal/") || where.endsWith("index.html")) continue;
+    const blocks = [...doc(file).querySelectorAll('script[type="application/ld+json"]')].map((node) => JSON.parse(node.text));
+    const posting = blocks.find((block) => block["@type"] === "BlogPosting");
+    assert.ok(posting?.datePublished, `${where} datePublished`);
+    published[routeOf(file)] = posting.datePublished;
+  }
+  const newest = Object.values(published).sort().at(-1);
+  published["/journal"] = newest;
+  published["/journal/feed.xml"] = newest;
+  for (const [route, day] of Object.entries(published)) {
+    const loc = `${CANONICAL_ORIGIN}${route}`;
+    assert.match(xml, new RegExp(`<loc>${loc}</loc>\\s*<lastmod>${day}</lastmod>`), `${route} lastmod`);
+  }
 });
 
 test("search index points at real pages", () => {
