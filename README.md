@@ -72,7 +72,7 @@ Set these in the Vercel project, not in the repo:
 
 `/search`, `/thanks`, and `404.html` are `noindex` and are omitted from the sitemap. Journal essay dates are `lastmod` values in the sitemap.
 
-See [ARCHITECTURE.md](ARCHITECTURE.md) for how a request moves through the site.
+See [ARCHITECTURE.md](ARCHITECTURE.md) for how a request moves through the site, and [docs/seo.md](docs/seo.md) for canonicals, robots, the sitemap, and structured data.
 
 ## Privacy
 
