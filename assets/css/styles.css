@@ -73,7 +73,9 @@
   /* Accent — amber/copper */
   --accent: #e89e3c;
   --accent-hot: #f5b14a;
-  --accent-deep: #b6781e;
+  /* #b6781e was 3.3:1 on the paper surface and 2.9:1 on the warm card.
+     This is the same copper, darkened until small text clears 4.5:1. */
+  --accent-deep: #8c5c17;
   --accent-glow: rgba(232, 158, 60, 0.18);
   --accent-soft: rgba(232, 158, 60, 0.08);
   /* Interactive edges. --rule-2 is ~1.9:1 and stays on decorative rules.
@@ -309,7 +311,7 @@ main[tabindex="-1"]:focus { outline: none; }
 }
 .btn-primary { background: var(--accent); color: var(--ink); }
 .btn-primary:hover { background: var(--accent-hot); color: var(--ink); transform: translateY(-2px); }
-.btn-ghost { background: transparent; color: var(--text); border-color: var(--rule-2); }
+.btn-ghost { background: transparent; color: var(--text); border-color: var(--control-line); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
 .arrow { width: 18px; height: 18px; transition: transform 240ms ease; }
@@ -1693,7 +1695,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   min-height: 44px;
   padding: 0.45rem 0.75rem 0.45rem 0.7rem;
   background: rgba(246, 241, 231, 0.04);
-  border: 1px solid var(--rule-2);
+  border: 1px solid var(--control-line);
   border-radius: 999px;
   color: var(--text-mute);
   font-family: var(--sans);
@@ -2705,7 +2707,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   gap: 0.45rem;
   padding: 0.45rem 0.85rem;
   background: var(--surface);
-  border: 1px solid var(--rule-2);
+  border: 1px solid var(--control-line);
   border-radius: 999px;
   color: var(--text-mute);
   font-family: var(--sans);
@@ -3067,7 +3069,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 }
 .search-suggest-list button {
   background: var(--surface);
-  border: 1px solid var(--rule-2);
+  border: 1px solid var(--control-line);
   border-radius: 999px;
   padding: 0.5rem 1rem;
   font-family: var(--sans);
