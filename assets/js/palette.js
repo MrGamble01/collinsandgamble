@@ -96,7 +96,7 @@
     // below 1100px, so a fixed "Search Ctrl K" name would announce a
     // shortcut that is not on screen.
     li.innerHTML = `
-      <button type="button" data-palette-trigger class="nav-search">
+      <button type="button" data-palette-trigger class="nav-search" aria-haspopup="dialog" aria-controls="cg-palette-dialog">
         ${ICONS.search}
         <span>Search</span>
         <kbd>${META_LABEL} K</kbd>
@@ -132,7 +132,7 @@
     root.setAttribute("hidden", "");
     root.innerHTML = `
       <div class="cg-palette-backdrop" data-close></div>
-      <div class="cg-palette-window" role="dialog" aria-label="Search Collins and Gamble" aria-modal="true">
+      <div id="cg-palette-dialog" class="cg-palette-window" role="dialog" aria-label="Search Collins and Gamble" aria-modal="true">
         <div class="cg-palette-header">
           <span class="cg-palette-icon" aria-hidden="true">${ICONS.search}</span>
           <input
@@ -143,22 +143,22 @@
             autocapitalize="off"
             autocomplete="off"
             role="combobox"
+            aria-label="Search the site"
             aria-controls="cg-palette-list"
             aria-autocomplete="list"
-            aria-expanded="true"
-            aria-activedescendant=""
+            aria-expanded="false"
             data-input
           />
-          <button type="button" class="cg-palette-shortcut-toggle" data-shortcut-toggle aria-label="Show keyboard shortcuts">
+          <button type="button" class="cg-palette-shortcut-toggle" data-shortcut-toggle aria-expanded="false" aria-label="Show keyboard shortcuts">
             ${ICONS.help}
           </button>
-          <button type="button" class="cg-palette-close" data-close aria-label="Close (Escape)">
+          <button type="button" class="cg-palette-close" data-close aria-label="Close">
             ${ICONS.close}
           </button>
         </div>
 
         <div class="cg-palette-body">
-          <ul id="cg-palette-list" class="cg-palette-list" role="listbox" data-list></ul>
+          <ul id="cg-palette-list" class="cg-palette-list" role="listbox" aria-label="Suggestions" data-list></ul>
           <div class="cg-palette-empty" data-empty hidden>
             <div class="cg-palette-empty-mark" aria-hidden="true">${ICONS.search}</div>
             <p class="cg-palette-empty-title">No matches.</p>
@@ -376,15 +376,57 @@
     return (s || "").replace(/"/g, "&quot;");
   }
 
+  function setActiveDescendant(id) {
+    const { input } = dom;
+    if (id) input.setAttribute("aria-activedescendant", id);
+    else input.removeAttribute("aria-activedescendant");
+  }
+
+  function syncChrome() {
+    if (!dom) return;
+    const dialog = dom.root.querySelector("#cg-palette-dialog");
+    const shortcutBtn = dom.root.querySelector("[data-shortcut-toggle]");
+    if (dialog) {
+      dialog.setAttribute(
+        "aria-label",
+        state.showShortcuts ? "Keyboard shortcuts" : "Search Collins and Gamble"
+      );
+    }
+    if (shortcutBtn) {
+      shortcutBtn.setAttribute("aria-expanded", state.showShortcuts ? "true" : "false");
+      shortcutBtn.setAttribute(
+        "aria-label",
+        state.showShortcuts ? "Hide keyboard shortcuts" : "Show keyboard shortcuts"
+      );
+    }
+  }
+
+  function renderGroup(label, items, startIndex, isRecent) {
+    const rows = items
+      .map((item, i) => {
+        const idx = startIndex + i;
+        return renderItemRow(item, idx, idx === state.selected, isRecent);
+      })
+      .join("");
+    return `
+      <li role="group" aria-label="${escapeAttr(label)}" class="cg-palette-group-block">
+        <span class="cg-palette-group" aria-hidden="true">${escapeHTML(label)}</span>
+        <ul class="cg-palette-group-list" role="presentation">
+          ${rows}
+        </ul>
+      </li>`;
+  }
+
   function render() {
     const { list, empty, shortcuts, input } = dom;
+    syncChrome();
     // Shortcuts panel overrides everything else
     if (state.showShortcuts) {
       list.hidden = true;
       empty.hidden = true;
       shortcuts.hidden = false;
       input.setAttribute("aria-expanded", "false");
-      input.setAttribute("aria-activedescendant", "");
+      setActiveDescendant("");
       return;
     }
 
@@ -396,27 +438,17 @@
       const items = [...recent, ...quick];
       list.hidden = items.length === 0;
       empty.hidden = items.length !== 0;
+      list.setAttribute("aria-label", "Suggestions");
       if (items.length === 0) {
-        input.setAttribute("aria-activedescendant", "");
+        setActiveDescendant("");
         input.setAttribute("aria-expanded", "false");
         list.innerHTML = "";
         return;
       }
       input.setAttribute("aria-expanded", "true");
       const html = [];
-      if (recent.length) {
-        html.push(`<li class="cg-palette-group" role="presentation">Recent</li>`);
-        for (let i = 0; i < recent.length; i++) {
-          html.push(renderItemRow(recent[i], i, i === state.selected, true));
-        }
-      }
-      if (quick.length) {
-        html.push(`<li class="cg-palette-group" role="presentation">Quick actions</li>`);
-        for (let i = 0; i < quick.length; i++) {
-          const idx = recent.length + i;
-          html.push(renderItemRow(quick[i], idx, idx === state.selected, false));
-        }
-      }
+      if (recent.length) html.push(renderGroup("Recent", recent, 0, true));
+      if (quick.length) html.push(renderGroup("Quick actions", quick, recent.length, false));
       list.innerHTML = html.join("");
       state.results = items.map((item) => ({ item, score: 0 }));
       updateActiveDescendant();
@@ -430,11 +462,12 @@
       list.hidden = true;
       empty.hidden = false;
       input.setAttribute("aria-expanded", "false");
-      input.setAttribute("aria-activedescendant", "");
+      setActiveDescendant("");
       return;
     }
     list.hidden = false;
     empty.hidden = true;
+    list.setAttribute("aria-label", "Search results");
     input.setAttribute("aria-expanded", "true");
     list.innerHTML = state.results
       .map(({ item }, i) => renderItemRow(item, i, i === state.selected, false))
@@ -443,10 +476,10 @@
   }
 
   function updateActiveDescendant() {
-    const { input, list } = dom;
+    const { list } = dom;
     const selectedEl = list.querySelector(".is-selected");
     if (selectedEl) {
-      input.setAttribute("aria-activedescendant", selectedEl.id);
+      setActiveDescendant(selectedEl.id);
       // Keep the active row in view
       const offset = selectedEl.offsetTop;
       const top = list.scrollTop;
@@ -455,7 +488,7 @@
       else if (offset + selectedEl.offsetHeight > bottom)
         list.scrollTop = offset + selectedEl.offsetHeight - list.clientHeight;
     } else {
-      input.setAttribute("aria-activedescendant", "");
+      setActiveDescendant("");
     }
   }
 
@@ -610,6 +643,7 @@
     state.showShortcuts = false;
     lastFocus = document.activeElement;
     dom.root.removeAttribute("hidden");
+    setBackgroundInert(true);
     document.documentElement.classList.add("cg-palette-locked");
     // Focus input on next frame so the open transition can start
     requestAnimationFrame(() => {
@@ -624,6 +658,7 @@
     if (!state.open) return;
     state.open = false;
     dom.root.setAttribute("hidden", "");
+    setBackgroundInert(false);
     document.documentElement.classList.remove("cg-palette-locked");
     if (lastFocus && typeof lastFocus.focus === "function") {
       lastFocus.focus();
@@ -634,6 +669,22 @@
     if (!dom) return;
     state.showShortcuts = !state.showShortcuts;
     render();
+  }
+
+  // aria-modal is not a focus trap in browsers. inert on the rest of the
+  // page keeps Tab and screen readers inside the dialog.
+  function setBackgroundInert(on) {
+    if (!dom) return;
+    for (const child of document.body.children) {
+      if (child === dom.root) continue;
+      if (on) {
+        if (!child.hasAttribute("inert")) child.setAttribute("data-palette-inert", "");
+        child.setAttribute("inert", "");
+      } else if (child.hasAttribute("data-palette-inert")) {
+        child.removeAttribute("inert");
+        child.removeAttribute("data-palette-inert");
+      }
+    }
   }
 
   // ---- Vim-style two-key quick navigation -----------------------------
@@ -763,6 +814,7 @@
   }
   function initImpl() {
     injectTrigger();
+    buildDOM();
     bindGlobalShortcut();
     // The index is fetched on first open. Preloading it pulled 34KB of
     // JSON into every page view, including visits that never search.
