@@ -86,7 +86,14 @@
   if (form) {
     const status = form.querySelector("[data-status]");
     const inbox = form.dataset.inbox || "hello@collinsandgamble.com";
+    const formKind = form.dataset.form || "";
     const defaultSubject = form.dataset.subject || "Inquiry";
+    const showStatus = (message, state) => {
+      if (!status) return;
+      status.hidden = false;
+      status.textContent = message;
+      status.classList.toggle("is-error", state === "error");
+    };
 
     // Optional path-coupling (only runs if both selects exist — i.e. the
     // contact form). Reshapes the "looking-for" options + placeholder
@@ -184,9 +191,8 @@
         // The browser tooltip is easy to miss. Repeat it in the form's
         // status line so the error is text on the page.
         const invalid = form.querySelector(":invalid");
-        if (status && invalid && invalid.validationMessage) {
-          status.hidden = false;
-          status.textContent = invalid.validationMessage;
+        if (invalid && invalid.validationMessage) {
+          showStatus(invalid.validationMessage, "error");
         }
         return;
       }
@@ -213,43 +219,55 @@
           side === "brand"   ? "Brand inquiry"   :
           defaultSubject;
 
-        if (status) {
-          status.textContent = "Sending…";
-          status.hidden = false;
-        }
+        showStatus("Sending…", "pending");
 
         // ---- Primary path: POST to the API. Server sends email via Resend.
-        let delivered = false;
+        let response = null;
         try {
-          const res = await fetch("/api/submit", {
+          response = await fetch("/api/submit", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               to: inbox,
+              form: formKind,
               subjectPrefix,
               fields: fieldsObj,
               honeypot,
             }),
           });
-          if (res.ok) delivered = true;
         } catch (_err) {
           // Network failed — drop through to the mailto: fallback.
         }
 
-        if (delivered) {
+        if (response && response.ok) {
           leaving = true;
           window.location.assign(thanksUrl);
           return;
         }
 
-        // ---- Fallback: mailto:. Still routes through /thanks so the user
-        // experience is identical whether the API delivered or not.
-
-        // Honeypot — real humans never see or touch this field. In fallback
-        // mode we swallow it client-side instead of generating a real email.
+        // Honeypot — real humans never see or touch this field. Swallow it
+        // here too, so a blocked request still does not open an email.
         if (honeypot !== "") {
           leaving = true;
           window.location.assign(thanksUrl);
+          return;
+        }
+
+        // A rejected note or a provider failure stays on the page. Only a
+        // missing mail service (or a dropped connection) opens the mail client.
+        if (response && (response.status === 400 || response.status === 502)) {
+          let message = response.status === 502
+            ? "We couldn't send that. Use the email address on this page."
+            : "Check the form and try again.";
+          try {
+            const payload = await response.json();
+            if (response.status === 400 && payload && typeof payload.error === "string" && payload.error.length < 200) {
+              message = payload.error;
+            }
+          } catch (_err) {
+            // The status line already has a fallback sentence.
+          }
+          showStatus(message, "error");
           return;
         }
 
@@ -265,11 +283,10 @@
           `?subject=${encodeURIComponent(subject)}` +
           `&body=${encodeURIComponent(body)}`;
 
-        if (status) {
-          status.innerHTML =
-            `Opening your email client — hit send to deliver the note. ` +
-            `Redirecting in a moment…`;
-        }
+        showStatus(
+          "The form service is offline. Opening your email client — hit send to deliver the note.",
+          "pending",
+        );
 
         // Fire the mailto: via a transient anchor so the browser hands it
         // off to the OS email client without navigating the current page.

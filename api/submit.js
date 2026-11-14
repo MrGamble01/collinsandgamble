@@ -1,5 +1,5 @@
-// Form submission handler for /contact and /apply. Sends an email via
-// Resend's REST API. Stateless, no SDK, no package.json needed.
+// Form submission handler for /contact, /apply, and /brands. Sends an email
+// via Resend's REST API. Stateless, no SDK.
 //
 // Required env vars (set in Vercel project settings):
 //   RESEND_API_KEY     — from resend.com/api-keys
@@ -10,13 +10,10 @@
 //                         lets that sender deliver to the account owner.
 //
 // Without RESEND_API_KEY the route returns 503 and the client falls back
-// to its existing mailto: handler — nothing breaks, the form just opens
-// the user's email client like before.
+// to its mailto: handler. A filled honeypot or a failed check never gets
+// that far.
 
-const ALLOWED_INBOXES = new Set([
-  "hello@collinsandgamble.com",
-  "apply@collinsandgamble.com",
-]);
+import { checkSubmission } from "./form-check.js";
 
 const prettify = (k) =>
   k.replace(/[-_]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -27,43 +24,28 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
+  const body = req.body && typeof req.body === "object" ? req.body : {};
+  const honeypot = body.honeypot;
+  // Silent success so a bot does not learn which fields failed.
+  if (typeof honeypot === "string" ? honeypot.trim() !== "" : honeypot) {
+    return res.status(200).json({ ok: true });
+  }
+
+  const checked = checkSubmission(body);
+  if (!checked.ok) {
+    return res.status(checked.status).json({ error: checked.error });
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     return res.status(503).json({ error: "Email service not configured" });
   }
 
-  const body = req.body && typeof req.body === "object" ? req.body : {};
-  const { to, subjectPrefix, fields, honeypot } = body;
-
-  // Honeypot — silently succeed on bot submissions so they don't retry.
-  if (typeof honeypot === "string" && honeypot.trim() !== "") {
-    return res.status(200).json({ ok: true });
-  }
-
-  if (!to || typeof to !== "string" || !ALLOWED_INBOXES.has(to)) {
-    return res.status(400).json({ error: "Invalid recipient" });
-  }
-  if (!fields || typeof fields !== "object") {
-    return res.status(400).json({ error: "Invalid payload" });
-  }
-
   const lines = [];
-  for (const [k, v] of Object.entries(fields)) {
-    if (k === "website") continue;
-    const val = (v ?? "").toString().trim();
-    if (val) lines.push(`${prettify(k)}: ${val}`);
-  }
-  if (lines.length === 0) {
-    return res.status(400).json({ error: "Empty submission" });
+  for (const [k, v] of Object.entries(checked.fields)) {
+    lines.push(`${prettify(k)}: ${v}`);
   }
   const text = lines.join("\n\n") + "\n";
-
-  const name = (fields.name ?? "").toString().trim();
-  const subject = `${subjectPrefix || "Inquiry"}${name ? ` — ${name}` : ""}`;
-  const replyTo = (fields.email ?? "").toString().trim();
-  // A bad reply-to makes Resend reject the whole message. Drop it and
-  // still deliver the note; the address is in the body either way.
-  const safeReply = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyTo) ? replyTo : undefined;
 
   const from =
     process.env.FORM_FROM_EMAIL ||
@@ -79,9 +61,9 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         from,
-        to: [to],
-        reply_to: safeReply,
-        subject,
+        to: [checked.to],
+        reply_to: checked.replyTo,
+        subject: checked.subject,
         text,
       }),
     });

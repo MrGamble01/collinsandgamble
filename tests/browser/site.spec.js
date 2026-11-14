@@ -121,6 +121,39 @@ test("contact form blocks a blank name, prefixes a bare URL, and sends once", as
   expect(calls).toBe(1);
 });
 
+test("contact form stays put when the server rejects or cannot send", async ({ page }) => {
+  await page.goto("/contact");
+  await page.route("**/api/submit", async (route) => {
+    await route.fulfill({
+      status: 400,
+      contentType: "application/json",
+      body: JSON.stringify({ error: "Enter a valid email." }),
+    });
+  });
+  await page.locator("#name").fill("Ada");
+  await page.locator("#email").fill("ada@example.com");
+  const button = page.locator("form button[type=submit]");
+  await button.click();
+  const status = page.locator("[data-status]");
+  await expect(status).toHaveText("Enter a valid email.");
+  await expect(status).toHaveClass(/is-error/);
+  await expect(page).toHaveURL(/\/contact$/);
+  await expect(button).toBeEnabled();
+
+  await page.unroute("**/api/submit");
+  await page.route("**/api/submit", async (route) => {
+    await route.fulfill({
+      status: 502,
+      contentType: "application/json",
+      body: JSON.stringify({ error: "Send failed" }),
+    });
+  });
+  await button.click();
+  await expect(status).toHaveText("We couldn't send that. Use the email address on this page.");
+  await expect(page).toHaveURL(/\/contact$/);
+  await expect(button).toBeEnabled();
+});
+
 test("the earnings slider fill follows the thumb", async ({ page }) => {
   await page.goto("/math");
   const slider = page.locator("#m-cadence");
