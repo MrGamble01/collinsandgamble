@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "lint": "node --test tests/html.test.js",
-    "test": "node --test tests/html.test.js tests/submit.test.js tests/perf.test.js tests/privacy.test.js tests/seo.test.js",
+    "test": "node --test tests/html.test.js tests/submit.test.js tests/perf.test.js tests/privacy.test.js tests/seo.test.js tests/headers.test.js",
     "build": "node tests/build-check.js",
     "test:browser": "playwright test"
   },
