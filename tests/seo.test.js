@@ -63,10 +63,85 @@ test("the homepage publishes Organization data and the sitemap matches robots", 
   assert.equal(org.url, `${ORIGIN}/`);
   assert.equal(org.logo, `${ORIGIN}/assets/img/icon-512.png`);
   assert.equal(org.contactPoint[0].email, "hello@collinsandgamble.com");
+  const practice = blocks.find((block) => block["@type"] === "ProfessionalService");
+  assert.ok(practice, "ProfessionalService JSON-LD");
+  assert.equal(practice.name, "Collins & Gamble");
+  assert.equal(practice.url, `${ORIGIN}/`);
+  assert.equal(practice.logo, `${ORIGIN}/assets/img/icon-512.png`);
+  assert.equal(practice.email, "hello@collinsandgamble.com");
+  assert.equal(practice.founder, undefined);
+  assert.equal(practice.employee, undefined);
 
   const robots = fs.readFileSync(path.join(root, "robots.txt"), "utf8");
   assert.match(robots, new RegExp(`Sitemap: ${ORIGIN}/sitemap.xml`));
   const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
   assert.equal(sitemap.includes("https://collinsgamble.com"), false);
   assert.ok(sitemap.includes(`${ORIGIN}/`));
+});
+
+function canonicalFor(where) {
+  const route = where.split(path.sep).join("/");
+  if (route === "index.html") return `${ORIGIN}/`;
+  if (route.endsWith("/index.html")) return `${ORIGIN}/${route.slice(0, -"/index.html".length)}`;
+  return `${ORIGIN}/${route.slice(0, -".html".length)}`;
+}
+
+function walkJson(node, visit) {
+  if (!node || typeof node !== "object") return;
+  if (Array.isArray(node)) {
+    for (const item of node) walkJson(item, visit);
+    return;
+  }
+  visit(node);
+  for (const value of Object.values(node)) walkJson(value, visit);
+}
+
+test("structured data names the agency and never a person", () => {
+  const agencyTypes = new Set(["Organization", "ProfessionalService"]);
+  for (const file of htmlFiles()) {
+    const where = path.relative(root, file);
+    const page = parse(fs.readFileSync(file, "utf8"));
+    if (where !== "404.html") {
+      const canonical = page.querySelector('link[rel="canonical"]')?.getAttribute("href");
+      assert.equal(canonical, canonicalFor(where), where);
+    }
+    const headings = page.querySelectorAll("h1,h2,h3,h4,h5,h6").map((node) => Number(node.tagName.replace(/\D/g, "")));
+    let prev = 0;
+    for (const level of headings) {
+      if (prev) assert.ok(level <= prev + 1, `${where} heading skips from h${prev} to h${level}`);
+      prev = level;
+    }
+    for (const img of page.querySelectorAll("img")) {
+      const alt = (img.getAttribute("alt") ?? "").trim();
+      assert.equal(/[@]|https?:|linkedin\.com\/in\/|\.(?:png|jpe?g|svg|webp|gif|avif)$/i.test(alt), false, `${where} alt ${alt}`);
+      if (alt) assert.ok(alt.length >= 12, `${where} alt is too thin`);
+    }
+    for (const script of page.querySelectorAll('script[type="application/ld+json"]')) {
+      walkJson(JSON.parse(script.text), (node) => {
+        const types = [].concat(node["@type"] ?? []);
+        assert.equal(types.includes("Person"), false, `${where} Person`);
+        for (const key of ["founder", "employee", "employees", "alumni"]) {
+          assert.equal(node[key], undefined, `${where} ${key}`);
+        }
+        if (types.some((type) => type === "BlogPosting" || type === "Article" || type === "Blog")) {
+          assert.ok(agencyTypes.has(node.author?.["@type"]), `${where} author`);
+          assert.equal(node.author.name, "Collins & Gamble", where);
+        }
+        if (node["@type"] === "WebApplication") {
+          assert.equal(node.provider?.["@type"], "ProfessionalService", where);
+          assert.equal(node.provider.name, "Collins & Gamble", where);
+          assert.equal(node.offers?.price, "0", where);
+        }
+      });
+    }
+  }
+});
+
+test("the service catalog lists the capabilities on the page", () => {
+  const page = parse(fs.readFileSync(path.join(root, "services.html"), "utf8"));
+  const blocks = page.querySelectorAll('script[type="application/ld+json"]').map((node) => JSON.parse(node.text));
+  const service = blocks.find((block) => block["@type"] === "Service");
+  const names = service.hasOfferCatalog.itemListElement.map((offer) => offer.itemOffered.name);
+  const visible = page.querySelectorAll("#capabilities h3").map((node) => node.text.trim());
+  assert.deepEqual(names, visible);
 });
