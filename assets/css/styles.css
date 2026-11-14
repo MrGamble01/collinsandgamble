@@ -1796,6 +1796,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   padding: 0.25rem 0;
 }
 .cg-palette-input::placeholder { color: var(--text-dim); }
+.cg-palette-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
 .cg-palette-shortcut-toggle,
 .cg-palette-close {
   display: inline-flex;
@@ -1841,7 +1845,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 }
 
 /* Group label */
+.cg-palette-group-block { list-style: none; }
+.cg-palette-group-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 .cg-palette-group {
+  display: block;
   list-style: none;
   font-family: var(--sans);
   font-size: 0.66rem;
