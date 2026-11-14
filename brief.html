@@ -63,7 +63,7 @@
         <li><a href="/about">About</a></li>
         <li><a href="/contact">Contact</a></li>
         <li class="nav-cta-wrap"><a class="nav-cta" href="/contact">Get started
-          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          <svg aria-hidden="true" focusable="false" class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a></li>
       </ul>
     </nav>
@@ -206,13 +206,14 @@
 
             <div class="brief-form-actions">
               <button type="button" class="btn btn-ghost" data-brief-reset>Clear the form</button>
-              <span class="brief-saved" data-brief-saved hidden>Saved locally</span>
+              <span class="brief-saved" data-brief-saved role="status" hidden>Saved locally</span>
             </div>
           </form>
 
           <aside class="brief-preview reveal" aria-label="Brief preview" data-brief-preview-wrap>
             <div class="brief-preview-toolbar">
               <span class="brief-preview-label">Live brief</span>
+              <p class="visually-hidden" role="status" data-brief-status></p>
               <div class="brief-preview-actions">
                 <button type="button" class="brief-tool" data-brief-copy aria-label="Copy as text">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>

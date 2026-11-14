@@ -236,6 +236,20 @@ test("pages expose named navigation landmarks", () => {
   assert.ok(playbook.querySelector('nav.playbook-toc[aria-label="Contents"]'));
 });
 
+test("decorative arrows are hidden and a citation stays inside its quote", () => {
+  for (const file of files) {
+    const page = doc(file);
+    const where = rel(file);
+    for (const svg of page.querySelectorAll("svg.arrow")) {
+      assert.equal(svg.getAttribute("aria-hidden"), "true", where);
+    }
+    for (const quote of page.querySelectorAll("blockquote")) {
+      if (!quote.querySelector("cite")) continue;
+      assert.equal(quote.querySelector("cite").parentNode, quote, `${where} cite`);
+    }
+  }
+});
+
 test("forms declare an allowed inbox and keep browser checks in script", () => {
   const expected = {
     "contact.html": ["hello@collinsandgamble.com", "contact"],

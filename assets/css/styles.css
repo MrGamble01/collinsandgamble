@@ -789,7 +789,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   vertical-align: -0.2em;
   opacity: 0.6;
 }
-.quote blockquote::after {
+.quote blockquote .quote-text::after {
   content: "\201D";
   color: var(--accent);
   margin-left: 0.05em;

@@ -51,11 +51,15 @@
   function flashSaved() {
     if (!savedFlag) return;
     savedFlag.hidden = false;
+    savedFlag.textContent = "Saved locally";
     savedFlag.classList.add("is-visible");
     clearTimeout(savedTimer);
     savedTimer = setTimeout(() => {
       savedFlag.classList.remove("is-visible");
-      setTimeout(() => { savedFlag.hidden = true; }, 220);
+      setTimeout(() => {
+        savedFlag.textContent = "";
+        savedFlag.hidden = true;
+      }, 220);
     }, 1500);
   }
 
@@ -254,6 +258,8 @@
     if (!span) return;
     const old = span.textContent;
     span.textContent = label;
+    const status = root.querySelector("[data-brief-status]");
+    if (status) status.textContent = label;
     btn.classList.add("is-flash");
     setTimeout(() => {
       span.textContent = old;

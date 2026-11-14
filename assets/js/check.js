@@ -113,6 +113,14 @@
     const q = QUESTIONS[current];
     progressFill.style.width = (current / QUESTIONS.length) * 100 + "%";
     stepLabel.textContent = `Question ${current + 1} of ${QUESTIONS.length}`;
+    const track = root.querySelector(".quiz-progress-track");
+    if (track) {
+      track.setAttribute("role", "progressbar");
+      track.setAttribute("aria-valuemin", "1");
+      track.setAttribute("aria-valuemax", String(QUESTIONS.length));
+      track.setAttribute("aria-valuenow", String(current + 1));
+      track.setAttribute("aria-labelledby", "quiz-step");
+    }
     qEl.textContent = q.q;
     helpEl.textContent = q.help;
     optionsEl.innerHTML = "";

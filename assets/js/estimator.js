@@ -121,11 +121,15 @@
   function flashSaved() {
     if (!savedFlag) return;
     savedFlag.hidden = false;
+    savedFlag.textContent = "Saved locally";
     savedFlag.classList.add("is-visible");
     clearTimeout(savedTimer);
     savedTimer = setTimeout(() => {
       savedFlag.classList.remove("is-visible");
-      setTimeout(() => { savedFlag.hidden = true; }, 220);
+      setTimeout(() => {
+        savedFlag.textContent = "";
+        savedFlag.hidden = true;
+      }, 220);
     }, 1500);
   }
 
@@ -249,6 +253,7 @@
     set("low", money(r.monthly.low));
     set("high", money(r.monthly.high));
     set("likely", money(r.monthly.likely));
+    announceEstimate(r);
     set("annual-low", money(r.annual.low));
     set("annual-high", money(r.annual.high));
 
@@ -302,6 +307,21 @@
     if (resetBtn) resetBtn.addEventListener("click", reset);
 
     render({ persist: false });
+    allowAnnounce = true;
+  }
+
+  let announceTimer = null;
+  let allowAnnounce = false;
+  function announceEstimate(result) {
+    const status = root.querySelector("[data-math-status]");
+    if (!status || !allowAnnounce) return;
+    const text =
+      `Monthly estimate ${money(result.monthly.low)} to ${money(result.monthly.high)} dollars. ` +
+      `Likely about ${money(result.monthly.likely)}.`;
+    clearTimeout(announceTimer);
+    announceTimer = setTimeout(() => {
+      status.textContent = text;
+    }, 400);
   }
 
   init();
