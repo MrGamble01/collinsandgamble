@@ -30,8 +30,8 @@ test("every page has its own title, description, and share cards on the site dom
     const page = parse(fs.readFileSync(file, "utf8"));
     const title = page.querySelector("title")?.text.trim();
     const description = meta(page, "name", "description");
-    assert.ok(title && title.length >= 10, where);
-    assert.ok(description && description.length >= 40, where);
+    assert.ok(title && title.length >= 10 && title.length <= 60, `${where} title length ${title?.length}`);
+    assert.ok(description && description.length >= 70 && description.length <= 160, `${where} description length ${description?.length}`);
     assert.equal(titles.has(title), false, `duplicate title ${title}`);
     assert.equal(descriptions.has(description), false, `duplicate description on ${where}`);
     titles.add(title);
