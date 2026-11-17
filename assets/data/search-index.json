@@ -289,6 +289,56 @@
       ]
     },
     {
+      "id": "journal-manager",
+      "title": "What a creator manager actually does",
+      "url": "/journal/what-a-creator-manager-does",
+      "kind": "article",
+      "parent": "The Journal",
+      "lead": "What a manager should run, what you keep, and the red flags before you sign.",
+      "description": "A plain breakdown of creator management for Amazon Influencers.",
+      "tags": ["manager", "agency", "sourcing", "red flags"]
+    },
+    {
+      "id": "journal-brand-deal",
+      "title": "How to read a brand deal before you sign it",
+      "url": "/journal/reading-a-brand-deal",
+      "kind": "article",
+      "parent": "The Journal",
+      "lead": "Rates, usage, exclusivity, deliverables, payment, and disclosure.",
+      "description": "The checks that keep a vague brand email from becoming a bad contract.",
+      "tags": ["contract", "usage", "exclusivity", "rate", "disclosure"]
+    },
+    {
+      "id": "journal-cadence",
+      "title": "A filming cadence you can keep for a year",
+      "url": "/journal/filming-cadence",
+      "kind": "article",
+      "parent": "The Journal",
+      "lead": "Batch by setup, and pick a weekly number you can hit on a bad week.",
+      "description": "How to pace on-site review videos so the storefront grows without burnout.",
+      "tags": ["cadence", "filming", "batch", "burnout"]
+    },
+    {
+      "id": "journal-disclosure",
+      "title": "Disclosure basics for Amazon creators",
+      "url": "/journal/disclosure-basics",
+      "kind": "article",
+      "parent": "The Journal",
+      "lead": "What a material connection is, and why you say it out loud.",
+      "description": "Plain-language disclosure habits for honest on-site reviews.",
+      "tags": ["disclosure", "ftc", "material connection", "honesty"]
+    },
+    {
+      "id": "journal-numbers",
+      "title": "Reading your numbers",
+      "url": "/journal/reading-your-numbers",
+      "kind": "article",
+      "parent": "The Journal",
+      "lead": "Four metrics that should change what you film next.",
+      "description": "Earnings by video, conversion, category, and time to first sale.",
+      "tags": ["analytics", "reporting", "conversion", "earnings"]
+    },
+    {
       "id": "journal-approval",
       "title": "How to get approved by the Influencer Program",
       "url": "/journal/how-to-get-approved",
